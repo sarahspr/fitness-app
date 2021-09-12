@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;700&display=swap");
+
+//Font Variables
+$urbanist: "Urbanist", sans-serif;
+
+$light: 300;
+$regular: 400;
+$bold: 700;
+
+body {
+  font-family: $urbanist;
+  font-weight: $regular;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-family: $urbanist;
+  font-weight: $bold;
+}
