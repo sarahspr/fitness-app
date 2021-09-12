@@ -7,17 +7,9 @@
   max-width: 40%;
   margin: 0 auto;
   border-radius: 5px;
-  span {
-    display: block;
-  }
   .input-type {
-    display: flex;
-    margin: 0 auto;
     width: 30%;
-    justify-content: space-between;
     .input-container {
-      display: flex;
-      align-items: center;
       input {
         margin-right: 0.5rem;
       }
