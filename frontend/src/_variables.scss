@@ -1,6 +1,15 @@
 /*********
+Colors
+**********/
+
+/*********
 Margins
 **********/
+
+.mx-auto {
+  margin: 0 auto;
+}
+
 .m-1 {
   margin: 1rem;
 }
@@ -107,4 +116,48 @@ Text Alignment
 
 .text-center {
   text-align: center;
+}
+
+/**********
+Display
+**********/
+
+.d-none {
+  display: none;
+  visibility: hidden;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+/**********
+Flex Directions/Alignment
+**********/
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
 }
