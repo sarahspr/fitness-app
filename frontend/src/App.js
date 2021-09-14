@@ -1,6 +1,25 @@
+import React, { useState } from 'react';
 import './App.scss';
 
 function App() {
+  const [measurementType, changeMeasuringUnits] = useState(null);
+
+  function imperialUnits() {
+    changeMeasuringUnits('imperial');
+    console.log(measurementType);
+  }
+
+  function metricUnits() {
+    changeMeasuringUnits('metric');
+    console.log(measurementType);
+  }
+  
+  function onSubmit(e) {
+    e.preventDefault();
+
+    console.log(this);
+  }
+
   return (
     <div className="bmi-calculator">
               <h1 className="bmi-calculator-title text-center mt-4 mb-4">BMI Calculator</h1>
@@ -8,35 +27,46 @@ function App() {
           <span className="text-center d-block mt-1 mb-2">Imperial or Metric</span>
           <div className="input-type d-flex justify-between mb-1">
             <div className="input-container d-flex align-center">
-              <input type="radio" id="imperial" name="input-type" value="imperial"/>
-              <label for="imperial">Imperial</label>
+              <input 
+              type="radio" id="imperial" 
+              name="input-type" 
+              value="imperial"
+              onClick={imperialUnits} 
+              />
+              <label htmlFor="imperial">Imperial</label>
             </div>
             <div className="input-container d-flex align-center">
-              <input type="radio" id="metric" name="input-type" value="metric"/>
-              <label for="metric">Metric</label>
+              <input
+              type="radio" 
+              id="metric" 
+              name="input-type" 
+              value="metric"
+              onClick={metricUnits}
+              />
+              <label htmlFor="metric">Metric</label>
             </div>
           </div>
-          <div class="imperial-input-container d-none">
-            <div class="input-container d-flex align-center">
+          <div className="imperial-input-container d-none">
+            <div className="input-container d-flex align-center">
               <input type="number" id="imperial-weight" name="imperial-weight" placeholder="150" />
-              <label for ="imperial-weight" class="weight-label">Weight (lbs)</label>
+              <label htmlFor ="imperial-weight" className="weight-label">Weight (lbs)</label>
             </div>
-            <div class="input-container d-flex align-center">
+            <div className="input-container d-flex align-center">
               <input type="number" id="imperial-height" name="imperial-height" placeholder="60" />
-              <label for ="imperial-height" class="height-label">Height (inches)</label>
+              <label htmlFor ="imperial-height" className="height-label">Height (inches)</label>
             </div>
           </div>
-          <div class="metric-input-containe d-none">
-            <div class="input-container d-flex align-center">
+          <div className="metric-input-containe d-none">
+            <div className="input-container d-flex align-center">
               <input type="number" id="metric-weight" name="metric-weight" placeholder="150" />
-              <label for ="metric-weight" class="weight-label">Weight (kgs)</label>
+              <label htmlFor ="metric-weight" className="weight-label">Weight (kgs)</label>
             </div>
-            <div class="input-container d-flex align-center">
+            <div className="input-container d-flex align-center">
               <input type="number" id="metric-height" name="metric-height" placeholder="60" />
-              <label for ="metric-height" class="height-label">Height (cm)</label>
+              <label htmlFor ="metric-height" className="height-label">Height (cm)</label>
             </div>
           </div>
-          <button>Calculate</button>
+          <button onClick={onSubmit}>Calculate</button>
       </form>
     </div>
   );
