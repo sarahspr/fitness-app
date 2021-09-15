@@ -15,4 +15,24 @@
       }
     }
   }
+  .imperial-input-container {
+    &.show {
+      display: flex;
+      visibility: visible;
+    }
+    &.hide {
+      display: none;
+      visibility: hidden;
+    }
+  }
+  .metric-input-container {
+    &.show {
+      display: flex;
+      visibility: visible;
+    }
+    &.hide {
+      display: none;
+      visibility: hidden;
+    }
+  }
 }
