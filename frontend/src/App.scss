@@ -39,7 +39,13 @@
       }
     }
   }
+  .btn-container {
+    width: 25%;
+  }
   .bmi-calculation-container {
     width: 20%;
+  }
+  .error {
+    color: $red;
   }
 }

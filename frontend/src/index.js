@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import BmiCalculator from './BmiCalculator';
+import BmrCalculator from './BmrCalculator';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BmiCalculator />
+    <BmrCalculator />
   </React.StrictMode>,
   document.getElementById('root')
 );

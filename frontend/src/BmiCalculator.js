@@ -1,12 +1,48 @@
 import React, { useState } from 'react';
 import './App.scss';
 
-function App() {
+function BmiCalculator() {
+
   const [formData, setFormData] = useState({
     measurementType: 'imperial',
     weight: '',
     height: ''
   });
+
+  const [validWeightInput, setValidWeightInput] = useState(true);
+  const [validHeightInput, setValidHeightInput] = useState(true);
+  const validInputRegex = /^[0-9]+$/;
+
+
+  const handleWeightInput = (e) => {
+    e.preventDefault();
+    setFormData({...formData, weight: e.target.value});
+    validateWeightInput(e.target.value);
+  }
+
+  const handleHeightInput = (e) => {
+    e.preventDefault();
+    setFormData({...formData, height: e.target.value});
+    validateHeightInput(e.target.value);
+  }
+
+  const validateWeightInput = (input) => {
+    if(input === ' ' || validInputRegex.test(input) === false) {
+      setValidWeightInput(false);
+    } else {
+      setValidWeightInput(true);
+    }
+    return validWeightInput;
+  }
+
+  const validateHeightInput = (input) => {
+    if(input === ' ' || validInputRegex.test(input) === false) {
+      setValidHeightInput(false);
+    } else {
+      setValidHeightInput(true);
+    }
+    return validHeightInput;
+  }
 
   const [bmiCalculation, setBmiCalculation] = useState(0);
 
@@ -39,9 +75,9 @@ function App() {
       <h1 className="bmi-calculator-title text-center mt-4 mb-4">BMI Calculator</h1>
       <div className="bmi-calculator-container d-flex flex-column align-center border-1">
         <form className="bmi-calculator-form d-flex flex-column align-center">
-            <span className="text-center d-block mt-1 mb-2">Imperial or Metric</span>
+            <span className="text-center d-block mt-1 mb-1">Choose a Measurement Type:</span>
             <div className="input-type d-flex justify-between mb-1">
-              <div className="input-container d-flex align-center">
+              <div className="input-container d-flex align-center mb-1">
                 <label>
                   <input 
                   type="radio" id="imperial" 
@@ -54,7 +90,7 @@ function App() {
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center">
+              <div className="input-container d-flex align-center mb-1">
                 <label>
                   <input
                   type="radio" 
@@ -69,7 +105,7 @@ function App() {
               </div>
             </div>
             <div className={`imperial-input-container mb-1 flex-column ${formData.measurementType === 'metric' ? 'metric' : 'imperial'}`}>
-              <div className="input-container d-flex align-center mb-1">
+              <div className="input-container d-flex flex-column align-center mb-1">
                 <label>
                 <input 
                 type="text" 
@@ -77,12 +113,13 @@ function App() {
                 name="imperial-weight"
                 value={formData.weight}
                 placeholder="150"
-                onChange={(e) => setFormData({...formData, weight: e.target.value})}
+                onChange={handleWeightInput}
                 />
                 Weight (lbs)
                 </label>
+                <span className={`error ${validWeightInput === true ? 'd-none' : 'd-flex'}`}>Please enter at least 1 number</span>
               </div>
-              <div className="input-container d-flex align-center">
+              <div className="input-container d-flex flex-column align-center">
                 <label>
                 <input 
                 type="text" 
@@ -90,10 +127,11 @@ function App() {
                 name="imperial-height" 
                 placeholder="60"
                 value={formData.height}
-                onChange={(e) => setFormData({...formData, height: e.target.value})}
+                onChange={handleHeightInput}
                 />
                 Height (inches)
                 </label>
+                <span className={`error ${validHeightInput === true ? 'd-none' : 'd-flex'}`}>Please enter at least 1 number</span>
               </div>
             </div>
             <div className={`metric-input-container mb-1 flex-column ${formData.measurementType === 'metric' ? 'metric' : 'imperial'}`}>
@@ -122,8 +160,10 @@ function App() {
                 </label>
               </div>
             </div>
-            <button className={'mb-1'} onClick={handleSubmit}>Calculate</button>
-            <button className={'mb-1'} onClick={clearForm}>Clear Form</button>
+            <div className="btn-container d-flex justify-between mt-1">
+              <button className={'mb-1'} onClick={handleSubmit}>Calculate</button>
+              <button className={'mb-1'} onClick={clearForm}>Clear Form</button>
+            </div>
         </form>
         <div className={`bmi-calculation-container ${bmiCalculation === 0 ? 'd-none' : 'd-flex mx-auto justify-between'}`}>
           <span className='bmi-label'>Current BMI:</span>
@@ -134,4 +174,4 @@ function App() {
   );
 }
 
-export default App;
+export default BmiCalculator;
