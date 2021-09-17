@@ -5,34 +5,41 @@
 
 .bmi-calculator-container {
   max-width: 40%;
+  padding: 50px 10px;
   margin: 0 auto;
   border-radius: 5px;
-  .input-type {
-    width: 30%;
-    .input-container {
-      input {
-        margin-right: 0.5rem;
+  .bmi-calculator-form {
+    width: 100%;
+    .input-type {
+      width: 30%;
+      .input-container {
+        input {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+    .imperial-input-container {
+      &.imperial {
+        display: flex;
+        visibility: visible;
+      }
+      &.metric {
+        display: none;
+        visibility: hidden;
+      }
+    }
+    .metric-input-container {
+      &.metric {
+        display: flex;
+        visibility: visible;
+      }
+      &.imperial {
+        display: none;
+        visibility: hidden;
       }
     }
   }
-  .imperial-input-container {
-    &.show {
-      display: flex;
-      visibility: visible;
-    }
-    &.hide {
-      display: none;
-      visibility: hidden;
-    }
-  }
-  .metric-input-container {
-    &.show {
-      display: flex;
-      visibility: visible;
-    }
-    &.hide {
-      display: none;
-      visibility: hidden;
-    }
+  .bmi-calculation-container {
+    width: 20%;
   }
 }

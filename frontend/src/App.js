@@ -2,101 +2,134 @@ import React, { useState } from 'react';
 import './App.scss';
 
 function App() {
-  const [imperial, setImperial] = useState(true);
-  const [weight, setWeight] = useState(0);
-  const [height, setHeight] = useState(0);
+  const [formData, setFormData] = useState({
+    measurementType: 'imperial',
+    weight: '',
+    height: ''
+  });
 
-  function onSubmit(e) {
+  const [bmiCalculation, setBmiCalculation] = useState(0);
+
+  function handleSubmit(e) {
     e.preventDefault();
+    let bmi;
+    if(formData.measurementType === 'imperial') {
+      //Imperial Formula for BMI calculation
+      bmi = Math.round(100 * (703 * (formData.weight /Math.pow(formData.height, 2)))) / 100
+    } else {
+      //Metric Formula for BMI calculation
+      bmi = Math.round(100 * (formData.weight / (Math.pow(formData.height, 2)))) / 100
+    }
+
+    setBmiCalculation(bmi)
+  }
+
+  const clearForm = (e) => {
+    e.preventDefault();
+
+    setFormData({
+      measurementType: 'imperial',
+      weight: '',
+      height: ''
+    });
   }
 
   return (
     <div className="bmi-calculator">
-              <h1 className="bmi-calculator-title text-center mt-4 mb-4">BMI Calculator</h1>
-      <form className="bmi-calculator-container d-flex flex-column align-center border-1">
-          <span className="text-center d-block mt-1 mb-2">Imperial or Metric</span>
-          <div className="input-type d-flex justify-between mb-1">
-            <div className="input-container d-flex align-center">
-              <label>
-                <input 
-                type="radio" id="imperial" 
-                name="input-type" 
-                value="imperial"
-                defaultChecked
-                checked={imperial === true}
-                onChange={() => setImperial(true)} 
-                />
-                Imperial
-              </label>
-            </div>
+      <h1 className="bmi-calculator-title text-center mt-4 mb-4">BMI Calculator</h1>
+      <div className="bmi-calculator-container d-flex flex-column align-center border-1">
+        <form className="bmi-calculator-form d-flex flex-column align-center">
+            <span className="text-center d-block mt-1 mb-2">Imperial or Metric</span>
+            <div className="input-type d-flex justify-between mb-1">
+              <div className="input-container d-flex align-center">
+                <label>
+                  <input 
+                  type="radio" id="imperial" 
+                  name="input-type" 
+                  value="imperial"
+                  checked={formData.measurementType === 'imperial'}
+                  onChange={(e) => setFormData({...formData, measurementType: e.target.value})} 
+                  />
+                  Imperial
+                </label>
+              </div>
 
-            <div className="input-container d-flex align-center">
-              <label>
-                <input
-                type="radio" 
-                id="metric" 
-                name="input-type" 
-                value="metric"
-                checked={imperial === false}
-                onChange={() => setImperial(false)}
-                />
-                Metric
-              </label>
+              <div className="input-container d-flex align-center">
+                <label>
+                  <input
+                  type="radio" 
+                  id="metric" 
+                  name="input-type" 
+                  value="metric"
+                  checked={formData.measurementType === 'metric'}
+                  onChange={(e) => setFormData({...formData, measurementType: e.target.value})}
+                  />
+                  Metric
+                </label>
+              </div>
             </div>
-          </div>
-          <div className={`imperial-input-container mb-1 flex-column ${imperial ? 'show' : 'hide'}`}>
-            <div className="input-container d-flex align-center mb-1">
-              <label>
-              <input 
-              type="text" 
-              id="imperial-weight" 
-              name="imperial-weight" 
-              placeholder="150"
-              onChange={(e) => setWeight(e.target.value)}
-              />
-              Weight (lbs)
-              </label>
-            </div>
-            <div className="input-container d-flex align-center">
-              <label>
-              <input 
-              type="text" 
-              id="imperial-height" 
-              name="imperial-height" 
-              placeholder="60"
-              onChange={(e) => setHeight(e.target.value)}
-              />
-              Height (inches)
-              </label>
-            </div>
-          </div>
-          <div className={`metric-input-container mb-1 flex-column ${imperial ? 'hide' : 'show'}`}>
-            <div className="input-container d-flex align-center mb-1">
-              <label>
+            <div className={`imperial-input-container mb-1 flex-column ${formData.measurementType === 'metric' ? 'metric' : 'imperial'}`}>
+              <div className="input-container d-flex align-center mb-1">
+                <label>
                 <input 
                 type="text" 
-                id="metric-weight" 
-                name="metric-weight" 
-                placeholder="150" 
+                id="imperial-weight" 
+                name="imperial-weight"
+                value={formData.weight}
+                placeholder="150"
+                onChange={(e) => setFormData({...formData, weight: e.target.value})}
                 />
-                Weight (kgs)
-              </label>
+                Weight (lbs)
+                </label>
+              </div>
+              <div className="input-container d-flex align-center">
+                <label>
+                <input 
+                type="text" 
+                id="imperial-height" 
+                name="imperial-height" 
+                placeholder="60"
+                value={formData.height}
+                onChange={(e) => setFormData({...formData, height: e.target.value})}
+                />
+                Height (inches)
+                </label>
+              </div>
             </div>
-            <div className="input-container d-flex align-center">
-              <label>
-              <input
-              type="text" 
-              id="metric-height" 
-              name="metric-height" 
-              placeholder="60" 
-              />
-              Height (cm)
-              </label>
+            <div className={`metric-input-container mb-1 flex-column ${formData.measurementType === 'metric' ? 'metric' : 'imperial'}`}>
+              <div className="input-container d-flex align-center mb-1">
+                <label>
+                  <input 
+                  type="text" 
+                  id="metric-weight" 
+                  name="metric-weight" 
+                  placeholder="150" 
+                  onChange={(e) => setFormData({...formData, weight: e.target.value})}
+                  />
+                  Weight (kgs)
+                </label>
+              </div>
+              <div className="input-container d-flex align-center">
+                <label>
+                <input
+                type="text" 
+                id="metric-height" 
+                name="metric-height" 
+                placeholder="60" 
+                onChange={(e) => setFormData({...formData, height: e.target.value})}
+                />
+                Height (cm)
+                </label>
+              </div>
             </div>
-          </div>
-          
-          <button className={'mb-1'} onClick={onSubmit}>Calculate</button>
-      </form>
+            <button className={'mb-1'} onClick={handleSubmit}>Calculate</button>
+            <button className={'mb-1'} onClick={clearForm}>Clear Form</button>
+        </form>
+        <div className={`bmi-calculation-container ${bmiCalculation === 0 ? 'd-none' : 'd-flex mx-auto justify-between'}`}>
+          <span className='bmi-label'>Current BMI:</span>
+          <span className="bmi-calculation">{bmiCalculation}</span>
+        </div>
+      </div>
     </div>
   );
 }
