@@ -1,9 +1,10 @@
-@import "./variables";
-@import "./global";
-@import "./mixins";
-@import "./fonts";
+@import "./resources/styles/variables";
+@import "./resources/styles/global";
+@import "./resources/styles/mixins";
+@import "./resources/styles/fonts";
+@import "./resources/styles/components";
 
-@import "./header.scss";
+@import "./resources/styles/header.scss";
 
 .welcome-container {
   height: 100vh;
