@@ -3,6 +3,8 @@
 @import "./mixins";
 @import "./fonts";
 
+@import "./header.scss";
+
 .welcome-container {
   height: 100vh;
   .calculator-cards-container {
@@ -10,12 +12,21 @@
     .calculator-card {
       box-shadow: 0px 0px 25px -7px rgba(0, 0, 0, 0.3);
       padding: 150px 100px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: black;
+      &:hover,
+      :visited,
+      :active {
+        text-decoration: none;
+      }
     }
   }
 }
 
 .bmi-calculator-container {
-  max-width: 40%;
+  max-width: 60%;
+  max-height: calc(100vh - 200px);
   padding: 50px 10px;
   margin: 0 auto;
   border-radius: 5px;

@@ -110,7 +110,7 @@ function BmrCalculator() {
 
   return (
     <div className="bmi-calculator">
-      <h1 className="bmi-calculator-title text-center mt-4 mb-4">BMR Calculator</h1>
+      <h3 className="bmi-calculator-title text-center mt-1 mb-4">BMR Calculator</h3>
       <div className="bmi-calculator-container d-flex flex-column align-center border-1">
         <form className="bmi-calculator-form d-flex flex-column align-center">
 

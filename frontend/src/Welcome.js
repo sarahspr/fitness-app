@@ -9,9 +9,6 @@ function Welcome() {
         <h6 className="text-center">Choose a Calculator to Get Started</h6>
       </div>
       <div className="calculator-cards-container d-flex justify-between">
-        <a className="calculator-card d-block" href="#">BMI Calculator</a>
-        <a className="calculator-card d-block" href="#">BMR Calculator</a>
-        <a className="calculator-card d-block" href="#">TDEE Calculator</a>
       </div>
     </div>
   );

@@ -71,7 +71,7 @@ function BmiCalculator() {
 
   return (
     <div className="bmi-calculator">
-      <h1 className="bmi-calculator-title text-center mt-4 mb-4">BMI Calculator</h1>
+      <h3 className="bmi-calculator-title text-center mt-1 mb-4">BMI Calculator</h3>
       <div className="bmi-calculator-container d-flex flex-column align-center border-1">
         <form className="bmi-calculator-form d-flex flex-column align-center">
             <span className="text-center d-block mt-1 mb-1">Choose a Measurement Type:</span>
