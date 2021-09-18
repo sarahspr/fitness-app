@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.scss';
 
 function BmrCalculator() {
   const [formData, setFormData] = useState({

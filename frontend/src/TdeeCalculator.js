@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.scss';
 
 function TdeeCalculator() {
   const [formData, setFormData] = useState({
@@ -115,7 +114,7 @@ function TdeeCalculator() {
   return (
     <div className="bmi-calculator">
       <h1 className="bmi-calculator-title text-center mt-4 mb-4">TDEE Calculator</h1>
-      <div className="bmi-calculator-container d-flex flex-column align-center border-1">
+      <div className="bmi-calculator-container tdee-calculator-container d-flex flex-column align-center border-1">
         <form className="bmi-calculator-form d-flex flex-column align-center">
 
             <span className="text-center d-block mt-1 mb-1">Choose a Formula:</span>

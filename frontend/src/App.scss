@@ -3,6 +3,17 @@
 @import "./mixins";
 @import "./fonts";
 
+.welcome-container {
+  height: 100vh;
+  .calculator-cards-container {
+    width: 65%;
+    .calculator-card {
+      box-shadow: 0px 0px 25px -7px rgba(0, 0, 0, 0.3);
+      padding: 150px 100px;
+    }
+  }
+}
+
 .bmi-calculator-container {
   max-width: 40%;
   padding: 50px 10px;
@@ -47,5 +58,13 @@
   }
   .error {
     color: $red;
+  }
+}
+
+.tdee-calculator-container {
+  .activity-multiplier-container {
+    &.input-type {
+      width: 50%;
+    }
   }
 }

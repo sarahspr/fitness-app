@@ -1,14 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BmiCalculator from './BmiCalculator';
-import BmrCalculator from './BmrCalculator';
-import TdeeCalculator from './TdeeCalculator';
+
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BmiCalculator />
-    <BmrCalculator />
-    <TdeeCalculator />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

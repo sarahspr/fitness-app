@@ -27,3 +27,35 @@ h6,
   font-family: $urbanist;
   font-weight: $bold;
 }
+
+h1,
+.h1 {
+  font-size: 6rem;
+}
+
+h2,
+.h2 {
+  font-size: 5rem;
+}
+
+h3,
+.h3 {
+  font-size: 4rem;
+}
+
+h4,
+.h4 {
+  font-size: 3rem;
+}
+
+h5,
+.h5 {
+  font-size: 2rem;
+}
+
+h6,
+.h6 {
+  font-size: 1.5rem;
+  font-weight: $regular;
+  text-transform: uppercase;
+}
