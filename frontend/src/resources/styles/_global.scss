@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  background: $light-grey;
 }
 
 *,
@@ -11,5 +12,5 @@ html {
 
 .main-content {
   max-width: 90%;
-  margin: 0 auto;
+  margin: 0 auto 75px;
 }

@@ -72,12 +72,11 @@ function BmiCalculator(props) {
   return (
     <div className="bmi-calculator">
       <h3 className="bmi-calculator-title text-center mt-1 mb-4">{props.title}</h3>
-      <div className="bmi-calculator-container d-flex flex-column align-center border-1">
         <form className="bmi-calculator-form d-flex flex-column align-center">
             <span className="text-center d-block mt-1 mb-1">Choose a Measurement Type:</span>
             <div className="input-type d-flex justify-between mb-1">
               <div className="input-container d-flex align-center mb-1">
-                <label>
+                <label className="d-flex align-center">
                   <input 
                   type="radio" id="imperial" 
                   name="input-type" 
@@ -90,7 +89,7 @@ function BmiCalculator(props) {
               </div>
 
               <div className="input-container d-flex align-center mb-1">
-                <label>
+                <label className="d-flex align-center">
                   <input
                   type="radio" 
                   id="metric" 
@@ -105,7 +104,7 @@ function BmiCalculator(props) {
             </div>
             <div className={`imperial-input-container mb-1 flex-column ${formData.measurementType === 'metric' ? 'metric' : 'imperial'}`}>
               <div className="input-container d-flex flex-column align-center mb-1">
-                <label>
+                <label className="d-flex align-end">
                 <input 
                 type="text" 
                 id="imperial-weight" 
@@ -119,7 +118,7 @@ function BmiCalculator(props) {
                 <span className={`error ${validWeightInput === true ? 'd-none' : 'd-flex'}`}>Please enter at least 1 number</span>
               </div>
               <div className="input-container d-flex flex-column align-center">
-                <label>
+                <label className="d-flex align-end">
                 <input 
                 type="text" 
                 id="imperial-height" 
@@ -135,8 +134,8 @@ function BmiCalculator(props) {
             </div>
             <div className={`metric-input-container mb-1 flex-column ${formData.measurementType === 'metric' ? 'metric' : 'imperial'}`}>
               <div className="input-container d-flex align-center mb-1">
-                <label>
-                  <input 
+                <label className="d-flex align-end">
+                  <input
                   type="text" 
                   id="metric-weight" 
                   name="metric-weight" 
@@ -147,7 +146,7 @@ function BmiCalculator(props) {
                 </label>
               </div>
               <div className="input-container d-flex align-center">
-                <label>
+                <label className="d-flex end">
                 <input
                 type="text" 
                 id="metric-height" 
@@ -159,16 +158,15 @@ function BmiCalculator(props) {
                 </label>
               </div>
             </div>
-            <div className="btn-container d-flex justify-between mt-1">
-              <button className={'mb-1'} onClick={handleSubmit}>Calculate</button>
-              <button className={'mb-1'} onClick={clearForm}>Clear Form</button>
+            <div className="btn-container d-flex justify-between mt-2">
+              <button className={'mb-1 btn-primary'} onClick={handleSubmit}>Calculate</button>
+              <button className={'mb-1 btn-secondary'} onClick={clearForm}>Clear Form</button>
             </div>
         </form>
         <div className={`bmi-calculation-container ${bmiCalculation === 0 ? 'd-none' : 'd-flex mx-auto justify-between'}`}>
           <span className='bmi-label'>Current BMI:</span>
           <span className="bmi-calculation">{bmiCalculation}</span>
         </div>
-      </div>
     </div>
   );
 }

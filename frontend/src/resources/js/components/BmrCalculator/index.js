@@ -111,7 +111,6 @@ function BmrCalculator(props) {
   return (
     <div className="bmi-calculator">
       <h3 className="bmi-calculator-title text-center mt-1 mb-4">{props.title}</h3>
-      <div className="bmi-calculator-container d-flex flex-column align-center border-1">
         <form className="bmi-calculator-form d-flex flex-column align-center">
 
             <span className="text-center d-block mt-1 mb-1">Choose a Formula:</span>
@@ -272,7 +271,7 @@ function BmrCalculator(props) {
                 </label>
               </div>
             </div>
-            <div className="btn-container d-flex justify-between mt-1">
+            <div className="btn-container d-flex justify-between mt-2">
               <button className={'mb-1'} onClick={handleSubmit}>Calculate</button>
               <button className={'mb-1'} onClick={clearForm}>Clear Form</button>
             </div>
@@ -281,7 +280,6 @@ function BmrCalculator(props) {
           <span className='bmi-label'>Current BMR:</span>
           <span className="bmi-calculation">{bmrCalculation}</span>
         </div>
-      </div>
     </div>
   );
 }

@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-
-import BmiCalculator from '../BmiCalculator';
-import BmrCalculator from '../BmrCalculator';
-import TdeeCalculator from '../TdeeCalculator';
+import { NavLink } from 'react-router-dom';
 
 function Welcome() {
 
@@ -11,25 +7,27 @@ function Welcome() {
     <div className="welcome-container d-flex flex-column align-center justify-center">
       <div className="welcome-text-container mb-4">
         <h1 className="welcome-screen-title text-center mb-1">Welcome!</h1>
-        <h6 className="text-center">Choose a Calculator to Get Started</h6>
+        <h6 className="text-center sub-heading">Choose a Calculator to Get Started</h6>
       </div>
       <div className="calculator-cards-container d-flex justify-between">
-        <Router>
-          <Link to="/bmi-calculator">BMI Calculator</Link>
-          <Link to="/bmr-calculator">BMR Calculator</Link>
-          <Link to="/tdee-calculator">TDEE Calculator</Link>
-        <Switch>
-         <Route path="/bmi-calculator">
-           <BmiCalculator title={"BMI Calculator"}/>
-        </Route>
-         <Route path="/bmr-calculator">
-           <BmrCalculator title={"BMR Calculator"}/>
-         </Route>
-         <Route path="/tdee-calculator">
-           <TdeeCalculator title ={"TDEE Calculator"}/>
-         </Route>
-       </Switch>
-       </Router>
+        <NavLink className="calculator-card d-flex flex-column" to="/bmi-calculator">
+            <span className="card-title mb-1 text-center">BMI Calculator</span>
+            <span className="description text-center">
+              Uses your height and weight to work out if your weight is healthy
+            </span>
+        </NavLink>
+        <NavLink className="calculator-card d-flex flex-column" to="/bmr-calculator">
+          <span className="card-title mb-1 text-center">BMR Calculator</span>
+          <span className="description text-center">
+            Estimates the amount of energy expended while at rest in a neutrally temperate environment
+          </span>
+        </NavLink>
+        <NavLink className="calculator-card d-flex flex-column" to="/tdee-calculator">
+        <span className="card-title mb-1 text-center">TDEE Calculator</span>
+          <span className="description text-center">
+            Calculates the total energy that a person uses in a day based on BMR and activity level
+          </span>
+        </NavLink>
       </div>
     </div>
   );

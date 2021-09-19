@@ -2,75 +2,47 @@
 @import "./resources/styles/global";
 @import "./resources/styles/mixins";
 @import "./resources/styles/fonts";
+@import "./resources/styles/forms";
+@import "./resources/styles/buttons";
 @import "./resources/styles/components";
 
-@import "./resources/styles/header.scss";
-
-.welcome-container {
-  height: 100vh;
-  .calculator-cards-container {
-    width: 65%;
-    .calculator-card {
-      box-shadow: 0px 0px 25px -7px rgba(0, 0, 0, 0.3);
-      padding: 150px 100px;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: black;
-      &:hover,
-      :visited,
-      :active {
-        text-decoration: none;
+.bmi-calculator-form {
+  .input-type {
+    .input-container {
+      input {
+        margin-right: 0.5rem;
       }
+    }
+  }
+  .imperial-input-container {
+    &.imperial {
+      display: flex;
+      visibility: visible;
+    }
+    &.metric {
+      display: none;
+      visibility: hidden;
+    }
+  }
+  .metric-input-container {
+    &.metric {
+      display: flex;
+      visibility: visible;
+    }
+    &.imperial {
+      display: none;
+      visibility: hidden;
     }
   }
 }
-
-.bmi-calculator-container {
-  max-width: 60%;
-  max-height: calc(100vh - 200px);
-  padding: 50px 10px;
-  margin: 0 auto;
-  border-radius: 5px;
-  .bmi-calculator-form {
-    width: 100%;
-    .input-type {
-      width: 30%;
-      .input-container {
-        input {
-          margin-right: 0.5rem;
-        }
-      }
-    }
-    .imperial-input-container {
-      &.imperial {
-        display: flex;
-        visibility: visible;
-      }
-      &.metric {
-        display: none;
-        visibility: hidden;
-      }
-    }
-    .metric-input-container {
-      &.metric {
-        display: flex;
-        visibility: visible;
-      }
-      &.imperial {
-        display: none;
-        visibility: hidden;
-      }
-    }
-  }
-  .btn-container {
-    width: 25%;
-  }
-  .bmi-calculation-container {
-    width: 20%;
-  }
-  .error {
-    color: $red;
-  }
+.btn-container {
+  width: 40%;
+}
+.bmi-calculation-container {
+  width: 20%;
+}
+.error {
+  color: $red;
 }
 
 .tdee-calculator-container {
