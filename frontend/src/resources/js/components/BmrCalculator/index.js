@@ -272,8 +272,8 @@ function BmrCalculator(props) {
               </div>
             </div>
             <div className="btn-container d-flex justify-between mt-2">
-              <button className={'mb-1'} onClick={handleSubmit}>Calculate</button>
-              <button className={'mb-1'} onClick={clearForm}>Clear Form</button>
+              <button className={'mb-1 btn-primary'} onClick={handleSubmit}>Calculate</button>
+              <button className={'mb-1 btn-secondary'} onClick={clearForm}>Clear Form</button>
             </div>
         </form>
         <div className={`bmi-calculation-container ${bmrCalculation === 0 ? 'd-none' : 'd-flex mx-auto justify-between'}`}>

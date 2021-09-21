@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function BmiCalculator(props) {
 
@@ -8,10 +8,13 @@ function BmiCalculator(props) {
     height: ''
   });
 
+  const setFormDataValues = (e) => {
+    setFormData({...formData, measurementType: e.target.value});
+  }
+  
   const [validWeightInput, setValidWeightInput] = useState(true);
   const [validHeightInput, setValidHeightInput] = useState(true);
   const validInputRegex = /^[0-9]+$/;
-
 
   const handleWeightInput = (e) => {
     e.preventDefault();
@@ -74,33 +77,36 @@ function BmiCalculator(props) {
       <h3 className="bmi-calculator-title text-center mt-1 mb-4">{props.title}</h3>
         <form className="bmi-calculator-form d-flex flex-column align-center">
             <span className="text-center d-block mt-1 mb-1">Choose a Measurement Type:</span>
-            <div className="input-type d-flex justify-between mb-1">
-              <div className="input-container d-flex align-center mb-1">
-                <label className="d-flex align-center">
+            <div className="input-type d-flex justify-center mb-1">
+              <div className="input-container radio-input-container d-flex align-center mr-1 mb-1">
+                <label>
                   <input 
-                  type="radio" id="imperial" 
+                  type="radio" 
+                  id="imperial" 
                   name="input-type" 
                   value="imperial"
-                  checked={formData.measurementType === 'imperial'}
-                  onChange={(e) => setFormData({...formData, measurementType: e.target.value})} 
+                  defaultChecked={true}
+                  onChange={setFormDataValues} 
                   />
+                  <span className="selected"></span>
                   Imperial
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label className="d-flex align-center">
+              <div className="input-container radio-input-container d-flex align-center mb-1">
+                <label>
                   <input
                   type="radio" 
                   id="metric" 
                   name="input-type" 
                   value="metric"
-                  checked={formData.measurementType === 'metric'}
-                  onChange={(e) => setFormData({...formData, measurementType: e.target.value})}
+                  onChange={setFormDataValues}
                   />
+                  <span className="selected"></span>
                   Metric
                 </label>
               </div>
+              
             </div>
             <div className={`imperial-input-container mb-1 flex-column ${formData.measurementType === 'metric' ? 'metric' : 'imperial'}`}>
               <div className="input-container d-flex flex-column align-center mb-1">

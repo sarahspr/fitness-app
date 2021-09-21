@@ -12,13 +12,74 @@ input {
   border-radius: 0;
   border-top: none;
   border-right: none;
-  border-bottom: 2px solid $green;
+  border-bottom: 2px solid $blue;
   border-left: none;
   padding: 8px;
   margin: 0;
   width: 75px;
+  text-align: center;
+}
+
+input::placeholder {
+  text-align: center;
+  font-family: $urbanist;
 }
 
 input[type="text"] {
   margin-right: 10px;
+}
+
+.input-container {
+  width: 100%;
+  label {
+    width: 100%;
+  }
+}
+.radio-input-container {
+  width: 30%;
+  // label {
+  //   display: block;
+  //   position: relative;
+  //   padding-left: 35px;
+  //   margin-bottom: 12px;
+  //   cursor: pointer;
+  //   -webkit-user-select: none;
+  //   -moz-user-select: none;
+  //   -ms-user-select: none;
+  //   user-select: none;
+  //   &:hover {
+  //     input ~ .selected {
+  //       background-color: #ccc;
+  //     }
+  //   }
+  //   input {
+  //     position: absolute;
+  //     opacity: 0;
+  //     cursor: pointer;
+  //     height: 0;
+  //     width: 0;
+  //     :checked ~ .selected::after {
+  //       display: block;
+  //     }
+  //   }
+  //   .selected {
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //     height: 25px !important;
+  //     width: 25px !important;
+  //     background-color: #eee;
+  //     ::after {
+  //       content: "";
+  //       position: absolute;
+  //       top: 9px;
+  //       left: 9px;
+  //       width: 8px;
+  //       height: 8px;
+  //       border-radius: 50%;
+  //       background: white;
+  //       display: none;
+  //     }
+  //   }
+  // }
 }

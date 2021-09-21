@@ -8,12 +8,12 @@ button {
   text-transform: uppercase;
   letter-spacing: 1px;
   &.btn-primary {
-    background: $green;
+    background: $blue;
     color: $white;
   }
   &.btn-secondary {
     background: $white;
-    color: $green;
-    border: 1px solid $green;
+    color: $blue;
+    border: 1px solid $blue;
   }
 }
