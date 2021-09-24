@@ -115,29 +115,34 @@ function BmrCalculator(props) {
 
             <span className="text-center d-block mt-1 mb-1">Choose a Formula:</span>
             <div className="input-type d-flex justify-between mb-1">
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input 
-                  type="radio" id="revised-harris-benedict" 
+                  type="radio" 
+                  id="revised-harris-benedict" 
+                  className="d-none"
                   name="formula-type" 
                   value="revised-harris-benedict"
                   checked={formData.formulaType === 'revised-harris-benedict'}
                   onChange={(e) => setFormData({...formData, formulaType: e.target.value})} 
                   />
+                  <span className="selected"></span>
                   Harris Benedict
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
                   id="mifflin-st-jeor" 
+                  className="d-none"
                   name="formula-type" 
                   value="mifflin-st-jeor"
                   checked={formData.formulaType === 'mifflin-st-jeor'}
                   onChange={(e) => setFormData({...formData, formulaType: e.target.value})}
                   />
+                  <span className="selected"></span>
                   Mifflin-St Jeor
                 </label>
               </div>
@@ -145,29 +150,34 @@ function BmrCalculator(props) {
 
             <span className="text-center d-block mt-1 mb-1">Choose a Measurement Type:</span>
             <div className="input-type d-flex justify-between mb-1">
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input 
-                  type="radio" id="imperial" 
+                  type="radio" 
+                  id="imperial" 
+                  className="d-none"
                   name="input-type" 
                   value="imperial"
                   checked={formData.measurementType === 'imperial'}
                   onChange={(e) => setFormData({...formData, measurementType: e.target.value})} 
                   />
+                  <span className="selected"></span>
                   Imperial
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
                   id="metric" 
+                  className="d-none"
                   name="input-type" 
                   value="metric"
                   checked={formData.measurementType === 'metric'}
                   onChange={(e) => setFormData({...formData, measurementType: e.target.value})}
                   />
+                  <span className="selected"></span>
                   Metric
                 </label>
               </div>
@@ -175,30 +185,34 @@ function BmrCalculator(props) {
 
             <span className="text-center d-block mt-1 mb-1">Select a Gender:</span>
             <div className="input-type d-flex justify-between mb-1">
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input 
                   type="radio" 
                   id="male" 
+                  className="d-none"
                   name="gender" 
                   value="male"
                   checked={formData.gender === 'male'}
                   onChange={(e) => setFormData({...formData, gender: e.target.value})} 
                   />
+                  <span className="selected"></span>
                   Male
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
                   id="female" 
+                  className="d-none"
                   name="gender" 
                   value="female"
                   checked={formData.gender === 'female'}
                   onChange={(e) => setFormData({...formData, gender: e.target.value})}
                   />
+                  <span className="selected"></span>
                   Female
                 </label>
               </div>
@@ -275,11 +289,11 @@ function BmrCalculator(props) {
               <button className={'mb-1 btn-primary'} onClick={handleSubmit}>Calculate</button>
               <button className={'mb-1 btn-secondary'} onClick={clearForm}>Clear Form</button>
             </div>
-        </form>
-        <div className={`bmi-calculation-container ${bmrCalculation === 0 ? 'd-none' : 'd-flex mx-auto justify-between'}`}>
-          <span className='bmi-label'>Current BMR:</span>
-          <span className="bmi-calculation">{bmrCalculation}</span>
+            <div className={`calculation-container ${bmrCalculation === 0 ? 'd-none' : 'd-flex mx-auto justify-between mt-3 mb-3'}`}>
+              <h6 className='calculation-label'>Current BMR:</h6>
+              <span className="bmi-calculation h6">{bmrCalculation}</span>
         </div>
+        </form>
     </div>
   );
 }

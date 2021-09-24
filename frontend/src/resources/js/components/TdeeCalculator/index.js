@@ -118,29 +118,34 @@ function TdeeCalculator(props) {
 
             <span className="text-center d-block mt-1 mb-1">Choose a Formula:</span>
             <div className="input-type d-flex justify-between mb-1">
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input 
-                  type="radio" id="revised-harris-benedict" 
+                  type="radio" 
+                  id="revised-harris-benedict" 
+                  className="d-none"
                   name="formula-type" 
                   value="revised-harris-benedict"
                   checked={formData.formulaType === 'revised-harris-benedict'}
                   onChange={(e) => setFormData({...formData, formulaType: e.target.value})} 
                   />
+                  <span className="selected"></span>
                   Harris Benedict
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
-                  id="mifflin-st-jeor" 
+                  id="mifflin-st-jeor"
+                  className="d-none" 
                   name="formula-type" 
                   value="mifflin-st-jeor"
                   checked={formData.formulaType === 'mifflin-st-jeor'}
                   onChange={(e) => setFormData({...formData, formulaType: e.target.value})}
                   />
+                  <span className="selected"></span>
                   Mifflin-St Jeor
                 </label>
               </div>
@@ -148,29 +153,34 @@ function TdeeCalculator(props) {
 
             <span className="text-center d-block mt-1 mb-1">Choose a Measurement Type:</span>
             <div className="input-type d-flex justify-between mb-1">
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input 
-                  type="radio" id="imperial" 
+                  type="radio" 
+                  id="imperial" 
+                  className="d-none"
                   name="input-type" 
                   value="imperial"
                   checked={formData.measurementType === 'imperial'}
                   onChange={(e) => setFormData({...formData, measurementType: e.target.value})} 
                   />
+                  <span className="selected"></span>
                   Imperial
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
                   id="metric" 
+                  className="d-none"
                   name="input-type" 
                   value="metric"
                   checked={formData.measurementType === 'metric'}
                   onChange={(e) => setFormData({...formData, measurementType: e.target.value})}
                   />
+                  <span className="selected"></span>
                   Metric
                 </label>
               </div>
@@ -178,30 +188,34 @@ function TdeeCalculator(props) {
 
             <span className="text-center d-block mt-1 mb-1">Select a Gender:</span>
             <div className="input-type d-flex justify-between mb-1">
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input 
                   type="radio" 
                   id="male" 
+                  className="d-none"
                   name="gender" 
                   value="male"
                   checked={formData.gender === 'male'}
                   onChange={(e) => setFormData({...formData, gender: e.target.value})} 
                   />
+                  <span className="selected"></span>
                   Male
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
                   id="female" 
+                  className="d-none"
                   name="gender" 
                   value="female"
                   checked={formData.gender === 'female'}
                   onChange={(e) => setFormData({...formData, gender: e.target.value})}
                   />
+                  <span className="selected"></span>
                   Female
                 </label>
               </div>
@@ -278,72 +292,82 @@ function TdeeCalculator(props) {
             <span>Be Honest with Yourself, How Active Are You Besides Exercise?</span>
             <div className='activity-multiplier-container input-type d-flex justify-between mb-1'>
 
-            <div className="input-container d-flex align-center mb-1">
-                <label>
+            <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input 
                   type="radio"
-                  id="regular-sedentary" 
+                  id="regular-sedentary"
+                  className="d-none" 
                   name="regular-activity-level" 
                   value="regular-sedentary"
                   checked={formData.regularActivityMultiplier === 'regular-sedentary'}
                   onChange={(e) => setFormData({...formData, regularActivityMultiplier: e.target.value})} 
                   />
+                  <span className="selected"></span>
                   Sedentary
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
                   id="regular-lightly-active" 
+                  className="d-none"
                   name="regular-activity-level" 
                   value="regular-lightly-active"
                   checked={formData.regularActivityMultiplier === 'regular-lightly-active'}
                   onChange={(e) => setFormData({...formData, regularActivityMultiplier: e.target.value})}
                   />
+                  <span className="selected"></span>
                   Lightly Active
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
                   id="regular-moderately-active" 
+                  className="d-none"
                   name="regular-activity-level" 
                   value="regular-moderately-active"
                   checked={formData.regularActivityMultiplier === 'regular-moderately-active'}
                   onChange={(e) => setFormData({...formData, regularActivityMultiplier: e.target.value})}
                   />
+                  <span className="selected"></span>
                   Moderately Active
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
                   id="regular-very-active" 
+                  className="d-none"
                   name="regular-activity-level" 
                   value="regular-very-active"
                   checked={formData.regularActivityMultiplier === 'regular-very-active'}
                   onChange={(e) => setFormData({...formData, regularActivityMultiplier: e.target.value})}
                   />
+                  <span className="selected"></span>
                   Very Active
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
                   id="regular-extremely-active" 
+                  className="d-none"
                   name="regular-activity-level" 
                   value="regular-extremely-active"
                   checked={formData.regularActivityMultiplier === 'regular-extremely-active'}
                   onChange={(e) => setFormData({...formData, regularActivityMultiplier: e.target.value})}
                   />
+                  <span className="selected"></span>
                   Extremely Active
                 </label>
               </div>
@@ -353,72 +377,82 @@ function TdeeCalculator(props) {
             <span>How Much do You Workout?</span>
             <div className='activity-multiplier-container input-type d-flex justify-between mb-1'>
 
-            <div className="input-container d-flex align-center mb-1">
-                <label>
+            <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input 
                   type="radio"
-                  id="exercise-rarely" 
+                  id="exercise-rarely"
+                  className="d-none" 
                   name="exercise-activity-level" 
                   value="exercise-rarely"
                   checked={formData.exerciseActivityMultiplier === 'exercise-rarely'}
                   onChange={(e) => setFormData({...formData, exerciseActivityMultiplier: e.target.value})} 
                   />
+                  <span className="selected"></span>
                   Rarely
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
                   id="exercise-lightly-active" 
+                  className="d-none"
                   name="exercise-activity-level" 
                   value="exercise-lightly-active"
                   checked={formData.exerciseActivityMultiplier === 'exercise-lightly-active'}
                   onChange={(e) => setFormData({...formData, exerciseActivityMultiplier: e.target.value})}
                   />
+                  <span className="selected"></span>
                   Lightly Active
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
                   id="exercise-moderately-active" 
+                  className="d-none"
                   name="exercise-activity-level" 
                   value="exercise-moderately-active"
                   checked={formData.exerciseActivityMultiplier === 'exercise-moderately-active'}
                   onChange={(e) => setFormData({...formData, exerciseActivityMultiplier: e.target.value})}
                   />
+                  <span className="selected"></span>
                   Moderately Active
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
                   id="exercise-very-active" 
+                  className="d-none"
                   name="exercise-activity-level" 
                   value="exercise-very-active"
                   checked={formData.exerciseActivityMultiplier === 'exercise-very-active'}
                   onChange={(e) => setFormData({...formData, exerciseActivityMultiplier: e.target.value})}
                   />
+                  <span className="selected"></span>
                   Very Active
                 </label>
               </div>
 
-              <div className="input-container d-flex align-center mb-1">
-                <label>
+              <div className="radio-input-container d-flex align-center mb-1">
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
                   id="exercise-extremely-active" 
+                  className="d-none"
                   name="exercise-activity-level" 
                   value="exercise-extremely-active"
                   checked={formData.exerciseActivityMultiplier === 'exercise-extremely-active'}
                   onChange={(e) => setFormData({...formData, exerciseActivityMultiplier: e.target.value})}
                   />
+                  <span className="selected"></span>
                   Extremely Active
                 </label>
               </div>

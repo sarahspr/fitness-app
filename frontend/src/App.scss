@@ -53,3 +53,10 @@
     }
   }
 }
+
+.calculation-container {
+  width: 30%;
+  .calculation-label {
+    font-weight: $bold;
+  }
+}

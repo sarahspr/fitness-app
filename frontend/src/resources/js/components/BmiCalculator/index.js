@@ -79,13 +79,13 @@ function BmiCalculator(props) {
             <span className="text-center d-block mt-1 mb-1">Choose a Measurement Type:</span>
             <div className="input-type d-flex justify-center mb-1">
               <div className="input-container radio-input-container d-flex align-center mr-1 mb-1">
-                <label>
+                <label className="radio-input-label justify-center align-center">
                   <input 
                   type="radio" 
                   id="imperial" 
+                  className="d-none"
                   name="input-type" 
                   value="imperial"
-                  defaultChecked={true}
                   onChange={setFormDataValues} 
                   />
                   <span className="selected"></span>
@@ -94,10 +94,11 @@ function BmiCalculator(props) {
               </div>
 
               <div className="input-container radio-input-container d-flex align-center mb-1">
-                <label>
+                <label className="radio-input-label justify-center align-center">
                   <input
                   type="radio" 
                   id="metric" 
+                  className= "d-none"
                   name="input-type" 
                   value="metric"
                   onChange={setFormDataValues}
@@ -168,11 +169,11 @@ function BmiCalculator(props) {
               <button className={'mb-1 btn-primary'} onClick={handleSubmit}>Calculate</button>
               <button className={'mb-1 btn-secondary'} onClick={clearForm}>Clear Form</button>
             </div>
-        </form>
-        <div className={`bmi-calculation-container ${bmiCalculation === 0 ? 'd-none' : 'd-flex mx-auto justify-between'}`}>
-          <span className='bmi-label'>Current BMI:</span>
-          <span className="bmi-calculation">{bmiCalculation}</span>
+            <div className={`calculation-container ${bmiCalculation === 0 ? 'd-none' : 'd-flex mx-auto justify-between mt-3 mb-3'}`}>
+          <h6 className='calculation-label'>Current BMI:</h6>
+          <span className="bmi-calculation h6">{bmiCalculation}</span>
         </div>
+        </form>
     </div>
   );
 }
