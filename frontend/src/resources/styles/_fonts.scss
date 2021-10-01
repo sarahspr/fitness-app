@@ -1,15 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;700&display=swap");
 
 //Font Variables
 $urbanist: "Urbanist", sans-serif;
 
 $light: 300;
 $regular: 400;
+$semi-bold: 600;
 $bold: 700;
 
 body {
-  font-family: $urbanist;
-  font-weight: $regular;
+	font-family: $urbanist;
+	font-weight: $regular;
 }
 
 h1,
@@ -24,45 +25,45 @@ h5,
 .h5,
 h6,
 .h6 {
-  font-family: $urbanist;
-  font-weight: $bold;
+	font-family: $urbanist;
+	font-weight: $bold;
 }
 
 h1,
 .h1 {
-  font-size: 6rem;
+	font-size: 6rem;
 }
 
 h2,
 .h2 {
-  font-size: 5rem;
+	font-size: 5rem;
 }
 
 h3,
 .h3 {
-  font-size: 4rem;
+	font-size: 4rem;
 }
 
 h4,
 .h4 {
-  font-size: 3rem;
+	font-size: 3rem;
 }
 
 h5,
 .h5 {
-  font-size: 2rem;
+	font-size: 2rem;
 }
 
 h6,
 .h6 {
-  font-size: 1.5rem;
-  font-weight: $regular;
-  text-transform: uppercase;
+	font-size: 1.5rem;
+	font-weight: $regular;
+	text-transform: uppercase;
 }
 
 p,
 span a {
-  font-size: 16px;
-  letter-spacing: 0.3px;
-  line-height: 24px;
+	font-size: 16px;
+	letter-spacing: 0.3px;
+	line-height: 24px;
 }

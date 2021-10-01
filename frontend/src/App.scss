@@ -7,56 +7,56 @@
 @import "./resources/styles/components";
 
 .bmi-calculator-form {
-  .input-type {
-    .input-container {
-      input {
-        margin-right: 0.5rem;
-      }
-    }
-  }
-  .imperial-input-container {
-    &.imperial {
-      display: flex;
-      visibility: visible;
-    }
-    &.metric {
-      display: none;
-      visibility: hidden;
-    }
-  }
-  .metric-input-container {
-    &.metric {
-      display: flex;
-      visibility: visible;
-    }
-    &.imperial {
-      display: none;
-      visibility: hidden;
-    }
-  }
+	.input-type {
+		.input-container {
+			input {
+				margin-right: 0.5rem;
+			}
+		}
+	}
+	.imperial-input-container {
+		&.imperial {
+			display: flex;
+			visibility: visible;
+		}
+		&.metric {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	.metric-input-container {
+		&.metric {
+			display: flex;
+			visibility: visible;
+		}
+		&.imperial {
+			display: none;
+			visibility: hidden;
+		}
+	}
 }
 .btn-container {
-  width: 40%;
+	width: 40%;
 }
 .bmi-calculation-container {
-  width: 20%;
+	width: 20%;
 }
 .error {
-  margin-top: 0.5rem;
-  color: $red;
+	margin-top: 0.5rem;
+	color: $red;
 }
 
 .tdee-calculator-container {
-  .activity-multiplier-container {
-    &.input-type {
-      width: 50%;
-    }
-  }
+	.activity-multiplier-container {
+		&.input-type {
+			width: 50%;
+		}
+	}
 }
 
 .calculation-container {
-  width: 30%;
-  .calculation-label {
-    font-weight: $bold;
-  }
+	width: 30%;
+	.calculation-label {
+		font-weight: $bold;
+	}
 }
