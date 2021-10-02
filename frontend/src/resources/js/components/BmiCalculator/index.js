@@ -49,8 +49,7 @@ function BmiCalculator(props) {
 
 	const [bmiCalculation, setBmiCalculation] = useState(0);
 
-	function handleSubmit(e) {
-		e.preventDefault();
+	function calculateBmi() {
 		let bmi;
 		if (formData.measurementType === "imperial") {
 			//Imperial Formula for BMI calculation
@@ -64,6 +63,18 @@ function BmiCalculator(props) {
 		setCalculationDisplay(true);
 
 		setBmiCalculation(bmi);
+	}
+
+	function handleSubmit(e) {
+		e.preventDefault();
+
+		calculateBmi();
+
+		const bmiRecord = {
+			measurement_type: formData.measurementType,
+			imperial_weight: formData.weight,
+			imperial_height: formData.height,
+		};
 	}
 
 	const clearForm = (e) => {

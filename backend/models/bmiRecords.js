@@ -1,3 +1,4 @@
+const { Int32, Decimal128 } = require("mongodb");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -8,19 +9,19 @@ const bmiRecordsSchema = new Schema(
 			required: true,
 		},
 		imperial_weight: {
-			type: Number,
+			type: Int32,
 		},
 		imperial_height: {
-			type: Number,
+			type: Int32,
 		},
 		metric_weight: {
-			type: Number,
+			type: Int32,
 		},
 		metric_height: {
-			type: Number,
+			type: Int32,
 		},
 		bmi_calculation: {
-			type: Number,
+			type: Decimal128,
 		},
 	},
 	{
