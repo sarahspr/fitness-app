@@ -24,14 +24,13 @@ app.get("/", (req, res) => {
 	res.sendFile(path.join(__dirname + "/../frontend/public/index.html"));
 });
 
-//Routes
-const bmiRecordsRouter = require("./routes/bmiRecords");
-const bmrRecordsRouter = require("./routes/bmrRecords");
-const tdeeRecordsRouter = require("./routes/tdeeRecords");
+// Routes
+app.use("/bmi-records", require("./routes/bmiRecords"));
+app.use("/bmr-records", require("./routes/bmrRecords"));
+app.use("/tdee-records", require("./routes/tdeeRecords"));
 
-app.use("/bmi-records", bmiRecordsRouter);
-app.use("/bmr-records", bmrRecordsRouter);
-app.use("/tdee-records", tdeeRecordsRouter);
+//Auth Routes
+app.use("/auth", require("./routes/user"));
 
 //Setup Port for Server to Run on
 const port = process.env.PORT || 3000;

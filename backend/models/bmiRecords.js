@@ -29,6 +29,6 @@ const bmiRecordsSchema = new Schema(
 	}
 );
 
-const BmiRecord = mongoose.model("BmiRecord", bmiRecordsSchema);
+const BmiRecord = mongoose.model("bmiRecord", bmiRecordsSchema);
 
 module.exports = BmiRecord;

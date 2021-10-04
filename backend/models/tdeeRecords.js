@@ -46,6 +46,6 @@ const tdeeRecordsSchema = new Schema(
 	}
 );
 
-const TdeeRecord = mongoose.model("TdeeRecord", tdeeRecordsSchema);
+const TdeeRecord = mongoose.model("tdeeRecord", tdeeRecordsSchema);
 
 module.exports = TdeeRecord;

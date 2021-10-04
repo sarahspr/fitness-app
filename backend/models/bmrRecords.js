@@ -40,6 +40,6 @@ const bmrRecordsSchema = new Schema(
 	}
 );
 
-const BmrRecord = mongoose.model("BmrRecord", bmrRecordsSchema);
+const BmrRecord = mongoose.model("bmrRecord", bmrRecordsSchema);
 
 module.exports = BmrRecord;
