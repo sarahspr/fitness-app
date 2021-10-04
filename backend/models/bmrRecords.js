@@ -2,11 +2,22 @@ const { Decimal128 } = require("mongodb");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const bmiRecordsSchema = new Schema(
+const bmrRecordsSchema = new Schema(
 	{
+		formula_type: {
+			type: String,
+			required: true,
+		},
 		measurement_type: {
 			type: String,
 			required: true,
+		},
+		gender: {
+			type: String,
+			required: true,
+		},
+		age: {
+			type: Number,
 		},
 		imperial_weight: {
 			type: Number,
@@ -20,7 +31,7 @@ const bmiRecordsSchema = new Schema(
 		metric_height: {
 			type: Number,
 		},
-		bmi_calculation: {
+		bmr_calculation: {
 			type: Decimal128,
 		},
 	},
@@ -29,6 +40,6 @@ const bmiRecordsSchema = new Schema(
 	}
 );
 
-const BmiRecord = mongoose.model("BmiRecord", bmiRecordsSchema);
+const BmrRecord = mongoose.model("BmrRecord", bmrRecordsSchema);
 
-module.exports = BmiRecord;
+module.exports = BmrRecord;

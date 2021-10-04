@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 function TdeeCalculator(props) {
 	const [formData, setFormData] = useState({
@@ -6,9 +7,11 @@ function TdeeCalculator(props) {
 		measurementType: "imperial",
 		gender: "male",
 		age: "",
-		weight: "",
-		height: "",
-		regularActivityMultiplier: 1.2,
+		imperialWeight: "",
+		imperialHeight: "",
+		metricWeight: "",
+		metricHeight: "",
+		dailyActivityMultiplier: 1.2,
 		exerciseActivityMultiplier: 1.2,
 	});
 
@@ -25,18 +28,31 @@ function TdeeCalculator(props) {
 		validateAgeInput(e.target.value);
 	};
 
-	const handleWeightInput = (e) => {
+	const handleImperialWeightInput = (e) => {
 		e.preventDefault();
-		setFormData({ ...formData, weight: e.target.value });
+		setFormData({ ...formData, imperialWeight: e.target.value });
 		validateWeightInput(e.target.value);
 	};
 
-	const handleHeightInput = (e) => {
+	const handleImperialHeightInput = (e) => {
 		e.preventDefault();
-		setFormData({ ...formData, height: e.target.value });
+		setFormData({ ...formData, imperialHeight: e.target.value });
 		validateHeightInput(e.target.value);
 	};
 
+	const handleMetricWeightInput = (e) => {
+		e.preventDefault();
+		setFormData({ ...formData, metricWeight: e.target.value });
+		validateWeightInput(e.target.value);
+	};
+
+	const handleMetricHeightInput = (e) => {
+		e.preventDefault();
+		setFormData({ ...formData, metricHeight: e.target.value });
+		validateHeightInput(e.target.value);
+	};
+
+	// Validations
 	const validateAgeInput = (input) => {
 		if (input === " " || validInputRegex.test(input) === false) {
 			setValidAgeInput(false);
@@ -66,8 +82,7 @@ function TdeeCalculator(props) {
 
 	const [tdeeCalculation, setTdeeCalculation] = useState(0);
 
-	function handleSubmit(e) {
-		e.preventDefault();
+	function calculateTdee() {
 		let bmr;
 		let activityMultiplier;
 		let tdee;
@@ -79,14 +94,14 @@ function TdeeCalculator(props) {
 			formData.measurementType === "imperial" &&
 			formData.gender === "male"
 		) {
-			bmr = 66.47 + 6.24 * formData.weight + 12.7 * formData.height - 6.755 * formData.age;
+			bmr = 66.47 + 6.24 * formData.imperialWeight + 12.7 * formData.imperialHeight - 6.755 * formData.age;
 		} else if (
 			formData.formulaType === "revised-harris-benedict" &&
 			formData.measurementType === "imperial" &&
 			formData.gender === "female"
 		) {
 			//Revised Harris Benedict Formula / Imperial / Female
-			bmr = 655.1 + 4.35 * formData.weight + 4.7 * formData.height - 4.7 * formData.age;
+			bmr = 655.1 + 4.35 * formData.imperialWeight + 4.7 * formData.imperialHeight - 4.7 * formData.age;
 			console.log(bmr);
 		} else if (
 			formData.formulaType === "revised-harris-benedict" &&
@@ -94,46 +109,46 @@ function TdeeCalculator(props) {
 			formData.gender === "male"
 		) {
 			//Revised Harris Benedict Formula / Metric / Male
-			bmr = 66.47 + 13.75 * formData.weight + 5.003 * formData.height - 6.755 * formData.age;
+			bmr = 66.47 + 13.75 * formData.metricWeight + 5.003 * formData.metricHeight - 6.755 * formData.age;
 		} else if (
 			formData.formulaType === "revised-harris-benedict" &&
 			formData.measurementType === "metric" &&
 			formData.gender === "female"
 		) {
 			//Revised Harris Benedict Formula / Metric / Female
-			bmr = 655.1 + 9.563 * formData.weight + 1.85 * formData.height - 4.676 * formData.age;
+			bmr = 655.1 + 9.563 * formData.metricWeight + 1.85 * formData.metricHeight - 4.676 * formData.age;
 		} else if (
 			formData.formulaType === "mifflin-st-jeor" &&
 			formData.measurementType === "imperial" &&
 			formData.gender === "male"
 		) {
 			//Mifflin-St Jeor Formula / Imperial / Male
-			bmr = 10 * (formData.weight / 2.2) + 6.25 * (formData.height * 2.54) - 5 * formData.age + 5;
+			bmr = 10 * (formData.imperialWeight / 2.2) + 6.25 * (formData.imperialHeight * 2.54) - 5 * formData.age + 5;
 		} else if (
 			formData.formulaType === "mifflin-st-jeor" &&
 			formData.measurementType === "imperial" &&
 			formData.gender === "female"
 		) {
 			//Mifflin-St Jeor Formula / Imperial / Female
-			bmr = 10 * (formData.weight / 2.2) + 6.25 * (formData.height * 2.54) - 5 * formData.age - 161;
+			bmr = 10 * (formData.imperialWeight / 2.2) + 6.25 * (formData.imperialHeight * 2.54) - 5 * formData.age - 161;
 		} else if (
 			formData.formulaType === "mifflin-st-jeor" &&
 			formData.measurementType === "metric" &&
 			formData.gender === "male"
 		) {
 			//Mifflin-St Jeor Formula / Metric / Male
-			bmr = 10 * formData.weight + 6.25 * formData.height - 5 * formData.age + 5;
+			bmr = 10 * formData.metricWeight + 6.25 * formData.metricHeight - 5 * formData.age + 5;
 		} else if (
 			formData.formulaType === "mifflin-st-jeor" &&
 			formData.measurementType === "metric" &&
 			formData.gender === "female"
 		) {
 			//Mifflin-St Jeor Formula / Metric / Female
-			bmr = 10 * formData.weight + 6.25 * formData.height - 5 * formData.age - 161;
+			bmr = 10 * formData.metricWeight + 6.25 * formData.metricHeight - 5 * formData.age - 161;
 		}
 
 		//Takes an average of the two Activity Multipliers
-		activityMultiplier = (formData.regularActivityMultiplier + formData.exerciseActivityMultiplier) / 2;
+		activityMultiplier = (formData.dailyActivityMultiplier + formData.exerciseActivityMultiplier) / 2;
 
 		//CALCULATE TDEE
 		tdee = bmr * activityMultiplier;
@@ -142,7 +157,36 @@ function TdeeCalculator(props) {
 
 		//Display Calculation
 		setCalculationDisplay(true);
+
+		return Math.round(tdee);
 	}
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		const latestTdeeCalculation = calculateTdee();
+
+		const tdeeRecord = {
+			formula_type: formData.formulaType,
+			measurement_type: formData.measurementType,
+			gender: formData.gender,
+			age: formData.age,
+			imperial_weight: formData.imperialWeight,
+			imperial_height: formData.imperialHeight,
+			metric_weight: formData.metricWeight,
+			metric_height: formData.metricHeight,
+			daily_activity_multiplier: formData.dailyActivityMultiplier,
+			exercise_activity_multiplier: formData.exerciseActivityMultiplier,
+			tdee_calculation: latestTdeeCalculation,
+		};
+
+		await axios
+			.post("http://localhost:3000/tdee-records/create", tdeeRecord)
+			.then((res) => console.log(res.data))
+			.catch((err) => console.log(err));
+
+		clearForm(e);
+	};
 
 	const clearForm = (e) => {
 		e.preventDefault();
@@ -152,11 +196,15 @@ function TdeeCalculator(props) {
 			measurementType: "imperial",
 			gender: "",
 			age: "",
-			weight: "",
-			height: "",
-			regularActivityMultiplier: 1.2,
+			imperialWeight: "",
+			imperialHeight: "",
+			metricWeight: "",
+			metricHeight: "",
+			dailyActivityMultiplier: 1.2,
 			exerciseActivityMultiplier: 1.2,
 		});
+
+		setTdeeCalculation(0);
 
 		setCalculationDisplay(false);
 	};
@@ -286,9 +334,9 @@ function TdeeCalculator(props) {
 								type="text"
 								id="imperial-weight"
 								name="imperial-weight"
-								value={formData.weight}
+								value={formData.imperialWeight}
 								placeholder="150"
-								onChange={handleWeightInput}
+								onChange={handleImperialWeightInput}
 							/>
 							Weight (lbs)
 						</label>
@@ -303,8 +351,8 @@ function TdeeCalculator(props) {
 								id="imperial-height"
 								name="imperial-height"
 								placeholder="60"
-								value={formData.height}
-								onChange={handleHeightInput}
+								value={formData.imperialHeight}
+								onChange={handleImperialHeightInput}
 							/>
 							Height (inches)
 						</label>
@@ -325,7 +373,8 @@ function TdeeCalculator(props) {
 								id="metric-weight"
 								name="metric-weight"
 								placeholder="150"
-								onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+								value={formData.metricWeight}
+								onChange={handleMetricWeightInput}
 							/>
 							Weight (kgs)
 						</label>
@@ -337,7 +386,8 @@ function TdeeCalculator(props) {
 								id="metric-height"
 								name="metric-height"
 								placeholder="60"
-								onChange={(e) => setFormData({ ...formData, height: e.target.value })}
+								value={formData.metricHeight}
+								onChange={handleMetricHeightInput}
 							/>
 							Height (cm)
 						</label>
@@ -353,8 +403,8 @@ function TdeeCalculator(props) {
 							name="activity-multiplier"
 							id="activity-multiplier"
 							className="mx-auto mb-1"
-							value={formData.regularActivityMultiplier}
-							onChange={(e) => setFormData({ ...formData, regularActivityMultiplier: e.target.value })}
+							value={formData.dailyActivityMultiplier}
+							onChange={(e) => setFormData({ ...formData, dailyActivityMultiplier: e.target.value })}
 						>
 							<option value={1.2}>Sedentary</option>
 							<option value={1.375}>Lightly Active</option>

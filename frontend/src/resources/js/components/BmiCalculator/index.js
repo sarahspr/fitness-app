@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 function BmiCalculator(props) {
 	const [formData, setFormData] = useState({
 		measurementType: "imperial",
-		weight: "",
-		height: "",
+		imperialWeight: "",
+		imperialHeight: "",
+		metricWeight: "",
+		metricHeight: "",
 	});
 
 	const [validWeightInput, setValidWeightInput] = useState(true);
@@ -13,19 +16,31 @@ function BmiCalculator(props) {
 
 	const [showCalculation, setCalculationDisplay] = useState(false);
 
-	const setFormDataValues = (e) => {
+	const setMeasurementType = (e) => {
 		setFormData({ ...formData, measurementType: e.target.value });
 	};
 
-	const handleWeightInput = (e) => {
+	const handleImperialWeightInput = (e) => {
 		e.preventDefault();
-		setFormData({ ...formData, weight: e.target.value });
+		setFormData({ ...formData, imperialWeight: e.target.value });
 		validateWeightInput(e.target.value);
 	};
 
-	const handleHeightInput = (e) => {
+	const handleImperialHeightInput = (e) => {
 		e.preventDefault();
-		setFormData({ ...formData, height: e.target.value });
+		setFormData({ ...formData, imperialHeight: e.target.value });
+		validateHeightInput(e.target.value);
+	};
+
+	const handleMetricWeightInput = (e) => {
+		e.preventDefault();
+		setFormData({ ...formData, metricWeight: e.target.value });
+		validateWeightInput(e.target.value);
+	};
+
+	const handleMetricHeightInput = (e) => {
+		e.preventDefault();
+		setFormData({ ...formData, metricHeight: e.target.value });
 		validateHeightInput(e.target.value);
 	};
 
@@ -53,37 +68,51 @@ function BmiCalculator(props) {
 		let bmi;
 		if (formData.measurementType === "imperial") {
 			//Imperial Formula for BMI calculation
-			bmi = Math.round(100 * (703 * (formData.weight / Math.pow(formData.height, 2)))) / 100;
+			bmi = Math.round(100 * (703 * (formData.imperialWeight / Math.pow(formData.imperialHeight, 2)))) / 100;
 		} else {
 			//Metric Formula for BMI calculation
-			bmi = Math.round(100 * (formData.weight / Math.pow(formData.height, 2))) / 100;
+			bmi = Math.round(100 * (formData.metricWeight / Math.pow(formData.metricHeight, 2))) / 100;
 		}
+
+		setBmiCalculation(Math.round(bmi));
 
 		//Display Calculation
 		setCalculationDisplay(true);
 
-		setBmiCalculation(bmi);
+		return Math.round(bmi);
 	}
 
-	function handleSubmit(e) {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		calculateBmi();
+		const latestBmiCalculation = calculateBmi();
 
 		const bmiRecord = {
 			measurement_type: formData.measurementType,
-			imperial_weight: formData.weight,
-			imperial_height: formData.height,
+			imperial_weight: formData.imperialWeight,
+			imperial_height: formData.imperialHeight,
+			metric_weight: formData.metricWeight,
+			metric_height: formData.metricHeight,
+			bmi_calculation: latestBmiCalculation,
 		};
-	}
+
+		await axios
+			.post("http://localhost:3000/bmi-records/create", bmiRecord)
+			.then((res) => console.log(res.data))
+			.catch((err) => console.log(err));
+
+		// clearForm(e);
+	};
 
 	const clearForm = (e) => {
 		e.preventDefault();
 
 		setFormData({
 			measurementType: "imperial",
-			weight: "",
-			height: "",
+			imperialWeight: "",
+			imperialHeight: "",
+			metricWeight: "",
+			metricHeight: "",
 		});
 
 		setCalculationDisplay(false);
@@ -103,7 +132,7 @@ function BmiCalculator(props) {
 								className="d-none"
 								name="input-type"
 								value="imperial"
-								onChange={setFormDataValues}
+								onChange={setMeasurementType}
 							/>
 							<span className="selected"></span>
 							Imperial
@@ -118,7 +147,7 @@ function BmiCalculator(props) {
 								className="d-none"
 								name="input-type"
 								value="metric"
-								onChange={setFormDataValues}
+								onChange={setMeasurementType}
 							/>
 							<span className="selected"></span>
 							Metric
@@ -136,9 +165,9 @@ function BmiCalculator(props) {
 								type="text"
 								id="imperial-weight"
 								name="imperial-weight"
-								value={formData.weight}
+								value={formData.imperialWeight}
 								placeholder="150"
-								onChange={handleWeightInput}
+								onChange={handleImperialWeightInput}
 							/>
 							Weight (lbs)
 						</label>
@@ -153,8 +182,8 @@ function BmiCalculator(props) {
 								id="imperial-height"
 								name="imperial-height"
 								placeholder="60"
-								value={formData.height}
-								onChange={handleHeightInput}
+								value={formData.imperialHeight}
+								onChange={handleImperialHeightInput}
 							/>
 							Height (inches)
 						</label>
@@ -175,7 +204,7 @@ function BmiCalculator(props) {
 								id="metric-weight"
 								name="metric-weight"
 								placeholder="150"
-								onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+								onChange={handleMetricWeightInput}
 							/>
 							Weight (kgs)
 						</label>
@@ -187,7 +216,7 @@ function BmiCalculator(props) {
 								id="metric-height"
 								name="metric-height"
 								placeholder="60"
-								onChange={(e) => setFormData({ ...formData, height: e.target.value })}
+								onChange={handleMetricHeightInput}
 							/>
 							Height (cm)
 						</label>

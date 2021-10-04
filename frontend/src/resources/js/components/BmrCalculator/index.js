@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function BmrCalculator(props) {
 	const [formData, setFormData] = useState({
@@ -6,8 +7,10 @@ function BmrCalculator(props) {
 		measurementType: "imperial",
 		gender: "male",
 		age: "",
-		weight: "",
-		height: "",
+		imperialWeight: "",
+		imperialHeight: "",
+		metricWeight: "",
+		metricHeight: "",
 	});
 
 	const [validAgeInput, setValidAgeInput] = useState(true);
@@ -23,17 +26,31 @@ function BmrCalculator(props) {
 		validateAgeInput(e.target.value);
 	};
 
-	const handleWeightInput = (e) => {
+	const handleImperialWeightInput = (e) => {
 		e.preventDefault();
-		setFormData({ ...formData, weight: e.target.value });
+		setFormData({ ...formData, imperialWeight: e.target.value });
 		validateWeightInput(e.target.value);
 	};
 
-	const handleHeightInput = (e) => {
+	const handleImperialHeightInput = (e) => {
 		e.preventDefault();
-		setFormData({ ...formData, height: e.target.value });
+		setFormData({ ...formData, imperialHeight: e.target.value });
 		validateHeightInput(e.target.value);
 	};
+
+	const handleMetricWeightInput = (e) => {
+		e.preventDefault();
+		setFormData({ ...formData, metricWeight: e.target.value });
+		validateWeightInput(e.target.value);
+	};
+
+	const handleMetricHeightInput = (e) => {
+		e.preventDefault();
+		setFormData({ ...formData, metricHeight: e.target.value });
+		validateHeightInput(e.target.value);
+	};
+
+	// Validations
 
 	const validateAgeInput = (input) => {
 		if (input === " " || validInputRegex.test(input) === false) {
@@ -64,8 +81,7 @@ function BmrCalculator(props) {
 
 	const [bmrCalculation, setBmrCalculation] = useState(0);
 
-	function handleSubmit(e) {
-		e.preventDefault();
+	const calculateBmr = () => {
 		let bmr;
 		//Revised Harris Benedict Formula / Imperial / Male
 		if (
@@ -73,64 +89,90 @@ function BmrCalculator(props) {
 			formData.measurementType === "imperial" &&
 			formData.gender === "male"
 		) {
-			bmr = 66.47 + 6.24 * formData.weight + 12.7 * formData.height - 6.755 * formData.age;
+			bmr = 66.47 + 6.24 * formData.imperialWeight + 12.7 * formData.imperialHeight - 6.755 * formData.age;
 		} else if (
 			formData.formulaType === "revised-harris-benedict" &&
 			formData.measurementType === "imperial" &&
 			formData.gender === "female"
 		) {
 			//Revised Harris Benedict Formula / Imperial / Female
-			bmr = 655.1 + 4.35 * formData.weight + 4.7 * formData.height - 4.7 * formData.age;
-			console.log(bmr);
+			bmr = 655.1 + 4.35 * formData.imperialWeight + 4.7 * formData.imperialHeight - 4.7 * formData.age;
 		} else if (
 			formData.formulaType === "revised-harris-benedict" &&
 			formData.measurementType === "metric" &&
 			formData.gender === "male"
 		) {
 			//Revised Harris Benedict Formula / Metric / Male
-			bmr = 66.47 + 13.75 * formData.weight + 5.003 * formData.height - 6.755 * formData.age;
+			bmr = 66.47 + 13.75 * formData.metricWeight + 5.003 * formData.metricHeight - 6.755 * formData.age;
 		} else if (
 			formData.formulaType === "revised-harris-benedict" &&
 			formData.measurementType === "metric" &&
 			formData.gender === "female"
 		) {
 			//Revised Harris Benedict Formula / Metric / Female
-			bmr = 655.1 + 9.563 * formData.weight + 1.85 * formData.height - 4.676 * formData.age;
+			bmr = 655.1 + 9.563 * formData.metricWeight + 1.85 * formData.metricHeight - 4.676 * formData.age;
 		} else if (
 			formData.formulaType === "mifflin-st-jeor" &&
 			formData.measurementType === "imperial" &&
 			formData.gender === "male"
 		) {
 			//Mifflin-St Jeor Formula / Imperial / Male
-			bmr = 10 * (formData.weight / 2.2) + 6.25 * (formData.height * 2.54) - 5 * formData.age + 5;
+			bmr = 10 * (formData.imperialWeight / 2.2) + 6.25 * (formData.imperialHeight * 2.54) - 5 * formData.age + 5;
 		} else if (
 			formData.formulaType === "mifflin-st-jeor" &&
 			formData.measurementType === "imperial" &&
 			formData.gender === "female"
 		) {
 			//Mifflin-St Jeor Formula / Imperial / Female
-			bmr = 10 * (formData.weight / 2.2) + 6.25 * (formData.height * 2.54) - 5 * formData.age - 161;
+			bmr = 10 * (formData.imperialWeight / 2.2) + 6.25 * (formData.imperialHeight * 2.54) - 5 * formData.age - 161;
 		} else if (
 			formData.formulaType === "mifflin-st-jeor" &&
 			formData.measurementType === "metric" &&
 			formData.gender === "male"
 		) {
 			//Mifflin-St Jeor Formula / Metric / Male
-			bmr = 10 * formData.weight + 6.25 * formData.height - 5 * formData.age + 5;
+			bmr = 10 * formData.metricWeight + 6.25 * formData.metricHeight - 5 * formData.age + 5;
 		} else if (
 			formData.formulaType === "mifflin-st-jeor" &&
 			formData.measurementType === "metric" &&
 			formData.gender === "female"
 		) {
 			//Mifflin-St Jeor Formula / Metric / Female
-			bmr = 10 * formData.weight + 6.25 * formData.height - 5 * formData.age - 161;
+			bmr = 10 * formData.metricWeight + 6.25 * formData.metricHeight - 5 * formData.age - 161;
 		}
 
-		//Display Calculation
+		setBmrCalculation(Math.round(bmr));
+
+		// Display Calculation
 		setCalculationDisplay(true);
 
-		setBmrCalculation(Math.round(bmr));
-	}
+		return Math.round(bmr);
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		const latestBmrCalculation = calculateBmr();
+
+		const bmrRecord = {
+			formula_type: formData.formulaType,
+			measurement_type: formData.measurementType,
+			gender: formData.gender,
+			age: formData.age,
+			imperial_weight: formData.imperialWeight,
+			imperial_height: formData.imperialHeight,
+			metric_weight: formData.metricWeight,
+			metric_height: formData.metricHeight,
+			bmr_calculation: latestBmrCalculation,
+		};
+
+		await axios
+			.post("http://localhost:3000/bmr-records/create", bmrRecord)
+			.then((res) => console.log(res.data))
+			.catch((err) => console.log(err));
+
+		// clearForm(e);
+	};
 
 	const clearForm = (e) => {
 		e.preventDefault();
@@ -140,9 +182,13 @@ function BmrCalculator(props) {
 			measurementType: "imperial",
 			gender: "",
 			age: "",
-			weight: "",
-			height: "",
+			imperialWeight: "",
+			imperialHeight: "",
+			metricWeight: "",
+			metricHeight: "",
 		});
+
+		setBmrCalculation(0);
 
 		setCalculationDisplay(false);
 	};
@@ -272,9 +318,9 @@ function BmrCalculator(props) {
 								type="text"
 								id="imperial-weight"
 								name="imperial-weight"
-								value={formData.weight}
+								value={formData.imperialWeight}
 								placeholder="150"
-								onChange={handleWeightInput}
+								onChange={handleImperialWeightInput}
 							/>
 							Weight (lbs)
 						</label>
@@ -289,8 +335,8 @@ function BmrCalculator(props) {
 								id="imperial-height"
 								name="imperial-height"
 								placeholder="60"
-								value={formData.height}
-								onChange={handleHeightInput}
+								value={formData.imperialHeight}
+								onChange={handleImperialHeightInput}
 							/>
 							Height (inches)
 						</label>
@@ -311,7 +357,8 @@ function BmrCalculator(props) {
 								id="metric-weight"
 								name="metric-weight"
 								placeholder="150"
-								onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
+								value={formData.metricWeight}
+								onChange={handleMetricWeightInput}
 							/>
 							Weight (kgs)
 						</label>
@@ -323,7 +370,8 @@ function BmrCalculator(props) {
 								id="metric-height"
 								name="metric-height"
 								placeholder="60"
-								onChange={(e) => setFormData({ ...formData, height: e.target.value })}
+								value={formData.metricHeight}
+								onChange={handleMetricHeightInput}
 							/>
 							Height (cm)
 						</label>
