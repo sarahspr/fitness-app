@@ -1,0 +1,33 @@
+.registration-page {
+	height: 100vh;
+	background: #00d2ff; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to right,
+		#3a7bd5,
+		#00d2ff
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	.welcome-container,
+	.registration-form {
+	}
+	.welcome-container {
+		width: 50%;
+		height: initial;
+		h1 {
+			color: white;
+		}
+	}
+	.registration-form {
+		width: 33%;
+		input[type="text"] {
+			margin-right: 0;
+		}
+		input {
+			border: 2px solid $blue;
+			max-width: 200px;
+			width: 100%;
+			min-width: 160px;
+		}
+	}
+}

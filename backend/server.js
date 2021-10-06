@@ -9,7 +9,12 @@ require("dotenv").config();
 var app = express();
 
 //Middleware
-app.use(cors());
+app.use(
+	cors({
+		origin: ["http://localhost:3001"],
+		credentials: true, //Allows browser to set cookies
+	})
+);
 app.use(express.json());
 app.use(cookieParser());
 

@@ -1,8 +1,11 @@
-@import "../js/components/Header/styles.m.scss";
-@import "../js/components/Welcome/styles.m.scss";
-@import "../js/components/Home/styles.m.scss";
+@import "../../components/layout/Navbar/styles.m.scss";
+@import "../../components/Welcome/styles.m.scss";
+@import "../../components/auth/Login/styles.m.scss";
 
 // Calculators
-@import "../js/components/BmiCalculator/styles.m.scss";
-@import "../js/components/BmrCalculator/styles.m.scss";
-@import "../js/components/TdeeCalculator/styles.m.scss";
+@import "../../components/BmiCalculator/styles.m.scss";
+@import "../../components/BmrCalculator/styles.m.scss";
+@import "../../components/TdeeCalculator/styles.m.scss";
+
+// Auth Components
+@import "../../components/auth/Register/styles.m.scss";

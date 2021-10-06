@@ -7,28 +7,38 @@ const User = require("../models/userModel");
 
 // REGISTER USER
 
-router.post("/", async (req, res) => {
+router.post("/create", async (req, res) => {
 	try {
 		const { email, password, verifyPassword } = req.body;
 
 		// Validation
 		if (!email || !password || !verifyPassword) {
-			return res.status(400).json({ errorMessage: "Please enter all required fields." });
+			return res
+				.status(400)
+				.json({ errorMessage: "Please enter all required fields." });
 		}
 
 		if (password.length < 6) {
-			return res.status(400).json({ errorMessage: "Please enter a password of at least 6 characters." });
+			return res
+				.status(400)
+				.json({
+					errorMessage: "Please enter a password of at least 6 characters.",
+				});
 		}
 
 		if (password !== verifyPassword) {
-			return res.status(400).json({ errorMessage: "Please enter the same password twice." });
+			return res
+				.status(400)
+				.json({ errorMessage: "Please enter the same password twice." });
 		}
 
 		// Check for duplicate account
 		const existingUser = await User.findOne({ email });
 
 		if (existingUser) {
-			return res.status(400).json({ errorMessage: "An account with this email already exists." });
+			return res
+				.status(400)
+				.json({ errorMessage: "An account with this email already exists." });
 		}
 
 		// Hash Password
@@ -71,7 +81,9 @@ router.post("/login", async (req, res) => {
 
 		// Validate
 		if (!email || !password) {
-			return res.status(400).json({ errorMessage: "Please enter all required fields." });
+			return res
+				.status(400)
+				.json({ errorMessage: "Please enter all required fields." });
 		}
 
 		const existingUser = await User.findOne({ email });
@@ -79,7 +91,10 @@ router.post("/login", async (req, res) => {
 			return res.status(401).json({ errorMessage: "Wrong email or password." });
 		}
 
-		const correctPassword = await bcrypt.compare(password, existingUser.hashed_password);
+		const correctPassword = await bcrypt.compare(
+			password,
+			existingUser.hashed_password
+		);
 		if (!correctPassword) {
 			return res.status(401).json({ errorMessage: "Wrong email or password." });
 		}
