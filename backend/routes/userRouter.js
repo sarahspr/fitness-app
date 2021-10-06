@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const User = require("../models/user");
+const User = require("../models/userModel");
 
 // REGISTER USER
 
@@ -41,14 +41,7 @@ router.post("/", async (req, res) => {
 			hashed_password,
 		});
 		const savedUser = await newUser.save();
-
-		// Adding this makes savedUser below undefined ---- WHY?? (Need to better understand Promises)
-		// .then(() => {
-		// 	res.status(200);
-		// })
-		// .catch((err) => {
-		// 	res.status(400).send(err);
-		// });
+		// res.json(savedUser);
 
 		// Sign the Token
 

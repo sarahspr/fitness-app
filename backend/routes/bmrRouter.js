@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-const TdeeRecord = require("../models/tdeeRecords");
+const BmrRecord = require("../models/bmrModel");
 
 /**
  *
  */
 router.get("/", (req, res) => {
-	TdeeRecord.find()
-		.then((tdeeRecords) => res.json(tdeeRecords))
+	BmrRecord.find()
+		.then((bmrRecords) => res.json(bmrRecords))
 		.catch((err) => res.status(400).json("Error: " + err));
 });
 
@@ -22,15 +22,13 @@ router.post("/create", (req, res) => {
 	const imperial_height = req.body.imperial_height;
 	const metric_weight = req.body.metric_weight;
 	const metric_height = req.body.metric_height;
-	const daily_activity_level = req.body.daily_activity_level;
-	const exercise_activity_level = req.body.exercise_activity_level;
-	const tdee_calculation = req.body.tdee_calculation;
+	const bmr_calculation = req.body.bmr_calculation;
 
 	// NEW SYNTAX OOOOOH YEAH!!!! AHHHHH!
 	// const { measurement_type, imperial_weight, imperial_height, metric_weight, metric_height, bmi_calculation } =
 	// 	req.body;
 
-	const tdeeRecord = new TdeeRecord({
+	const bmrRecord = new BmrRecord({
 		formula_type,
 		measurement_type,
 		gender,
@@ -39,12 +37,10 @@ router.post("/create", (req, res) => {
 		imperial_height,
 		metric_weight,
 		metric_height,
-		daily_activity_level,
-		exercise_activity_level,
-		tdee_calculation,
+		bmr_calculation,
 	});
 
-	tdeeRecord
+	bmrRecord
 		.save()
 		.then(() => {
 			res.status(200).send({ status: "Success!" });
