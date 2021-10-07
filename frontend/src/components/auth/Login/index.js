@@ -1,7 +1,12 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+
+import AuthContext from "../../../context/AuthContext";
 
 function Login() {
+	const { getLoggedIn } = useContext(AuthContext);
+	const history = useHistory();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -17,6 +22,8 @@ function Login() {
 			.post("http://localhost:3000/auth/login", loginData)
 			.then((res) => console.log(res.data))
 			.catch((err) => console.log(err));
+		await getLoggedIn();
+		history.push("/");
 	};
 
 	return (
@@ -26,7 +33,7 @@ function Login() {
 			</div>
 			<form className="registration-form mt-3">
 				<h2 className="h6 text-center mt-1 mb-2">Log in to Get Started</h2>
-				<div class="login-inputs-container d-flex flex-column align-center">
+				<div className="login-inputs-container d-flex flex-column align-center">
 					<input
 						type="text"
 						className="mt-1 mb-2"
@@ -42,7 +49,7 @@ function Login() {
 					<div className="btn-container d-flex justify-center mt-3">
 						<button
 							type="submit"
-							class="btn btn-primary mb-2 mr-1"
+							className="btn btn-primary mb-2 mr-1"
 							onClick={handleSubmit}
 						>
 							Log In

@@ -19,11 +19,9 @@ router.post("/create", async (req, res) => {
 		}
 
 		if (password.length < 6) {
-			return res
-				.status(400)
-				.json({
-					errorMessage: "Please enter a password of at least 6 characters.",
-				});
+			return res.status(400).json({
+				errorMessage: "Please enter a password of at least 6 characters.",
+			});
 		}
 
 		if (password !== verifyPassword) {
@@ -129,6 +127,20 @@ router.get("/logout", (req, res) => {
 			.send();
 	} catch (err) {
 		res.status(400).send(err);
+	}
+});
+
+// CHECK LOG IN/LOG OUT STATUS
+router.get("/logged-in", (req, res) => {
+	try {
+		const token = req.cookies.token;
+		if (!token) {
+			return res.json(false);
+		}
+		jwt.verify(token, process.env.JWT_SECRET);
+		res.send(true);
+	} catch (err) {
+		res.json(false);
 	}
 });
 

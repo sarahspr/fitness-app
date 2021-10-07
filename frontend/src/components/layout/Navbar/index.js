@@ -1,25 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import AuthContext from "../../../context/AuthContext";
+import Logout from "../../auth/Logout";
+
 function Navbar() {
+	const { loggedIn } = useContext(AuthContext);
 	return (
-		<div className="header d-flex justify-center mx-auto">
-			<nav className="main-nav d-flex justify-center">
-				<ul className="nav-links d-flex justify-between">
-					<li>
-						<Link to="/">Home</Link>
-					</li>
-					<li>
-						<Link to="/register">Register</Link>
-					</li>
-					<li>
-						<Link to="/login">Login</Link>
-					</li>
-					<li>
-						<Link to="/recipe">Recipes</Link>
-					</li>
-				</ul>
-			</nav>
+		<div>
+			<Link to="/">Home</Link>
+			{loggedIn === false && (
+				<>
+					<Link to="/register">Register</Link>
+					<Link to="/login">Login</Link>
+				</>
+			)}
+			{loggedIn === true && (
+				<>
+					<Link to="/bmi-calculator">BMI Calculator</Link>
+					<Link to="/recipe">Recipes</Link>
+					<Logout />
+				</>
+			)}
 		</div>
 	);
 }

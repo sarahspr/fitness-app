@@ -3,9 +3,6 @@ const router = express.Router();
 
 const BmiRecord = require("../models/bmiModel");
 
-/**
- *
- */
 router.get("/", (req, res) => {
 	BmiRecord.find()
 		.then((bmiRecords) => res.json(bmiRecords))
