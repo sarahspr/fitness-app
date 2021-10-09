@@ -13,9 +13,11 @@ function Logout() {
 	};
 
 	return (
-		<button onClick={logOut} className="btn-secondary">
-			Log out
-		</button>
+		<div className="p-2">
+			<button onClick={logOut} className="btn btn-primary">
+				Log out
+			</button>
+		</div>
 	);
 }
 

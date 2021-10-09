@@ -23,41 +23,51 @@ function Login() {
 			.then((res) => console.log(res.data))
 			.catch((err) => console.log(err));
 		await getLoggedIn();
-		history.push("/");
+		history.push("/dashboard");
 	};
 
 	return (
-		<section className="registration-page d-flex flex-column align-center">
-			<div className="welcome-container d-flex justify-center mt-3">
-				<h1 className="h3 pt-5 text-center">Welcome to Fit App</h1>
+		<div className="login-page d-flex flex-reverse">
+			<div className="left w-50 pt-1 pr-1 pb-1 pl-1">
+				<div className="login-image-container"></div>
 			</div>
-			<form className="registration-form mt-3">
-				<h2 className="h6 text-center mt-1 mb-2">Log in to Get Started</h2>
-				<div className="login-inputs-container d-flex flex-column align-center">
-					<input
-						type="text"
-						className="mt-1 mb-2"
-						onChange={(e) => setEmail(e.target.value)}
-						value={email}
-					></input>
-					<input
-						type="password"
-						className="mt-1"
-						onChange={(e) => setPassword(e.target.value)}
-						value={password}
-					></input>
+			<div className="right d-flex flex-column justify-center align-center w-50 pt-1 pr-4 pb-1 pl-1">
+				<h1 className="h5">Log In</h1>
+				<form className="auth-form d-flex flex-column align-center mt-3">
+					<div className="input-container d-flex flex-column align-center w-100">
+						<label for="email">Email</label>
+						<input
+							name="email"
+							type="text"
+							className="mt-1 mb-2"
+							onChange={(e) => setEmail(e.target.value)}
+							value={email}
+							required={true}
+						></input>
+					</div>
+					<div className="input-container d-flex flex-column align-center w-100">
+						<label for="password">Password</label>
+						<input
+							type="password"
+							name="password"
+							className="mt-1"
+							onChange={(e) => setPassword(e.target.value)}
+							value={password}
+							required={true}
+						></input>
+					</div>
 					<div className="btn-container d-flex justify-center mt-3">
 						<button
 							type="submit"
-							className="btn btn-primary mb-2 mr-1"
+							className="btn btn-primary login-btn mb-2 mr-1"
 							onClick={handleSubmit}
 						>
 							Log In
 						</button>
 					</div>
-				</div>
-			</form>
-		</section>
+				</form>
+			</div>
+		</div>
 	);
 }
 

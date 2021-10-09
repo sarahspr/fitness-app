@@ -1,0 +1,27 @@
+.home {
+	height: calc(100vh - 100px);
+	.left {
+		width: 45%;
+		.logo-container {
+			.logo-name {
+				text-decoration: none;
+			}
+		}
+		.btn {
+			text-decoration: none;
+			width: fit-content;
+		}
+	}
+	.right {
+		width: 45%;
+		.hero-image {
+			background-image: url("../../resources/images/grey-fitness-image.png");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+			width: 100%;
+			min-height: 1px;
+			height: 100%;
+		}
+	}
+}

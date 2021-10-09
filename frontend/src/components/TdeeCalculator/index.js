@@ -94,14 +94,22 @@ function TdeeCalculator(props) {
 			formData.measurementType === "imperial" &&
 			formData.gender === "male"
 		) {
-			bmr = 66.47 + 6.24 * formData.imperialWeight + 12.7 * formData.imperialHeight - 6.755 * formData.age;
+			bmr =
+				66.47 +
+				6.24 * formData.imperialWeight +
+				12.7 * formData.imperialHeight -
+				6.755 * formData.age;
 		} else if (
 			formData.formulaType === "revised-harris-benedict" &&
 			formData.measurementType === "imperial" &&
 			formData.gender === "female"
 		) {
 			//Revised Harris Benedict Formula / Imperial / Female
-			bmr = 655.1 + 4.35 * formData.imperialWeight + 4.7 * formData.imperialHeight - 4.7 * formData.age;
+			bmr =
+				655.1 +
+				4.35 * formData.imperialWeight +
+				4.7 * formData.imperialHeight -
+				4.7 * formData.age;
 			console.log(bmr);
 		} else if (
 			formData.formulaType === "revised-harris-benedict" &&
@@ -109,46 +117,72 @@ function TdeeCalculator(props) {
 			formData.gender === "male"
 		) {
 			//Revised Harris Benedict Formula / Metric / Male
-			bmr = 66.47 + 13.75 * formData.metricWeight + 5.003 * formData.metricHeight - 6.755 * formData.age;
+			bmr =
+				66.47 +
+				13.75 * formData.metricWeight +
+				5.003 * formData.metricHeight -
+				6.755 * formData.age;
 		} else if (
 			formData.formulaType === "revised-harris-benedict" &&
 			formData.measurementType === "metric" &&
 			formData.gender === "female"
 		) {
 			//Revised Harris Benedict Formula / Metric / Female
-			bmr = 655.1 + 9.563 * formData.metricWeight + 1.85 * formData.metricHeight - 4.676 * formData.age;
+			bmr =
+				655.1 +
+				9.563 * formData.metricWeight +
+				1.85 * formData.metricHeight -
+				4.676 * formData.age;
 		} else if (
 			formData.formulaType === "mifflin-st-jeor" &&
 			formData.measurementType === "imperial" &&
 			formData.gender === "male"
 		) {
 			//Mifflin-St Jeor Formula / Imperial / Male
-			bmr = 10 * (formData.imperialWeight / 2.2) + 6.25 * (formData.imperialHeight * 2.54) - 5 * formData.age + 5;
+			bmr =
+				10 * (formData.imperialWeight / 2.2) +
+				6.25 * (formData.imperialHeight * 2.54) -
+				5 * formData.age +
+				5;
 		} else if (
 			formData.formulaType === "mifflin-st-jeor" &&
 			formData.measurementType === "imperial" &&
 			formData.gender === "female"
 		) {
 			//Mifflin-St Jeor Formula / Imperial / Female
-			bmr = 10 * (formData.imperialWeight / 2.2) + 6.25 * (formData.imperialHeight * 2.54) - 5 * formData.age - 161;
+			bmr =
+				10 * (formData.imperialWeight / 2.2) +
+				6.25 * (formData.imperialHeight * 2.54) -
+				5 * formData.age -
+				161;
 		} else if (
 			formData.formulaType === "mifflin-st-jeor" &&
 			formData.measurementType === "metric" &&
 			formData.gender === "male"
 		) {
 			//Mifflin-St Jeor Formula / Metric / Male
-			bmr = 10 * formData.metricWeight + 6.25 * formData.metricHeight - 5 * formData.age + 5;
+			bmr =
+				10 * formData.metricWeight +
+				6.25 * formData.metricHeight -
+				5 * formData.age +
+				5;
 		} else if (
 			formData.formulaType === "mifflin-st-jeor" &&
 			formData.measurementType === "metric" &&
 			formData.gender === "female"
 		) {
 			//Mifflin-St Jeor Formula / Metric / Female
-			bmr = 10 * formData.metricWeight + 6.25 * formData.metricHeight - 5 * formData.age - 161;
+			bmr =
+				10 * formData.metricWeight +
+				6.25 * formData.metricHeight -
+				5 * formData.age -
+				161;
 		}
 
 		//Takes an average of the two Activity Multipliers
-		activityMultiplier = (formData.dailyActivityMultiplier + formData.exerciseActivityMultiplier) / 2;
+		activityMultiplier =
+			(formData.dailyActivityMultiplier + formData.exerciseActivityMultiplier) /
+			2;
 
 		//CALCULATE TDEE
 		tdee = bmr * activityMultiplier;
@@ -211,9 +245,13 @@ function TdeeCalculator(props) {
 
 	return (
 		<div className="bmi-calculator">
-			<h3 className="bmi-calculator-title text-center mt-1 mb-4">{props.title}</h3>
+			<h3 className="bmi-calculator-title text-center mt-1 mb-4">
+				{props.title}
+			</h3>
 			<form className="bmi-calculator-form d-flex flex-column align-center">
-				<span className="label text-center d-block mt-1 mb-1">Choose a Formula:</span>
+				<span className="label text-center d-block mt-1 mb-1">
+					Choose a Formula:
+				</span>
 				<div className="input-type d-flex justify-between mb-1">
 					<div className="radio-input-container d-flex align-center mb-1">
 						<label className="radio-input-label justify-center align-center">
@@ -224,7 +262,9 @@ function TdeeCalculator(props) {
 								name="formula-type"
 								value="revised-harris-benedict"
 								checked={formData.formulaType === "revised-harris-benedict"}
-								onChange={(e) => setFormData({ ...formData, formulaType: e.target.value })}
+								onChange={(e) =>
+									setFormData({ ...formData, formulaType: e.target.value })
+								}
 							/>
 							<span className="selected"></span>
 							Harris Benedict
@@ -240,7 +280,9 @@ function TdeeCalculator(props) {
 								name="formula-type"
 								value="mifflin-st-jeor"
 								checked={formData.formulaType === "mifflin-st-jeor"}
-								onChange={(e) => setFormData({ ...formData, formulaType: e.target.value })}
+								onChange={(e) =>
+									setFormData({ ...formData, formulaType: e.target.value })
+								}
 							/>
 							<span className="selected"></span>
 							Mifflin-St Jeor
@@ -248,7 +290,9 @@ function TdeeCalculator(props) {
 					</div>
 				</div>
 
-				<span className="label text-center d-block mt-1 mb-1">Choose a Measurement Type:</span>
+				<span className="label text-center d-block mt-1 mb-1">
+					Choose a Measurement Type:
+				</span>
 				<div className="input-type d-flex justify-between mb-1">
 					<div className="radio-input-container d-flex align-center mb-1">
 						<label className="radio-input-label justify-center align-center">
@@ -259,7 +303,9 @@ function TdeeCalculator(props) {
 								name="input-type"
 								value="imperial"
 								checked={formData.measurementType === "imperial"}
-								onChange={(e) => setFormData({ ...formData, measurementType: e.target.value })}
+								onChange={(e) =>
+									setFormData({ ...formData, measurementType: e.target.value })
+								}
 							/>
 							<span className="selected"></span>
 							Imperial
@@ -275,7 +321,9 @@ function TdeeCalculator(props) {
 								name="input-type"
 								value="metric"
 								checked={formData.measurementType === "metric"}
-								onChange={(e) => setFormData({ ...formData, measurementType: e.target.value })}
+								onChange={(e) =>
+									setFormData({ ...formData, measurementType: e.target.value })
+								}
 							/>
 							<span className="selected"></span>
 							Metric
@@ -283,7 +331,9 @@ function TdeeCalculator(props) {
 					</div>
 				</div>
 
-				<span className="label text-center d-block mt-1 mb-1">Select a Gender:</span>
+				<span className="label text-center d-block mt-1 mb-1">
+					Select a Gender:
+				</span>
 				<div className="input-type d-flex justify-between mb-2">
 					<div className="radio-input-container d-flex align-center mb-1">
 						<label className="radio-input-label justify-center align-center">
@@ -294,7 +344,9 @@ function TdeeCalculator(props) {
 								name="gender"
 								value="male"
 								checked={formData.gender === "male"}
-								onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+								onChange={(e) =>
+									setFormData({ ...formData, gender: e.target.value })
+								}
 							/>
 							<span className="selected"></span>
 							Male
@@ -310,7 +362,9 @@ function TdeeCalculator(props) {
 								name="gender"
 								value="female"
 								checked={formData.gender === "female"}
-								onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+								onChange={(e) =>
+									setFormData({ ...formData, gender: e.target.value })
+								}
 							/>
 							<span className="selected"></span>
 							Female
@@ -320,7 +374,13 @@ function TdeeCalculator(props) {
 
 				<span className="label">How Old Are You?</span>
 				<div className="input-container d-flex flex-column align-center mb-1">
-					<input type="text" id="age" name="age" value={formData.age} onChange={handleAgeInput} />
+					<input
+						type="text"
+						id="age"
+						name="age"
+						value={formData.age}
+						onChange={handleAgeInput}
+					/>
 				</div>
 
 				<div
@@ -340,7 +400,11 @@ function TdeeCalculator(props) {
 							/>
 							Weight (lbs)
 						</label>
-						<span className={`error ${validWeightInput === true ? "d-none" : "d-flex"}`}>
+						<span
+							className={`error ${
+								validWeightInput === true ? "d-none" : "d-flex"
+							}`}
+						>
 							Please enter at least 1 number
 						</span>
 					</div>
@@ -356,7 +420,11 @@ function TdeeCalculator(props) {
 							/>
 							Height (inches)
 						</label>
-						<span className={`error ${validHeightInput === true ? "d-none" : "d-flex"}`}>
+						<span
+							className={`error ${
+								validHeightInput === true ? "d-none" : "d-flex"
+							}`}
+						>
 							Please enter at least 1 number
 						</span>
 					</div>
@@ -404,7 +472,12 @@ function TdeeCalculator(props) {
 							id="activity-multiplier"
 							className="mx-auto mb-1"
 							value={formData.dailyActivityMultiplier}
-							onChange={(e) => setFormData({ ...formData, dailyActivityMultiplier: e.target.value })}
+							onChange={(e) =>
+								setFormData({
+									...formData,
+									dailyActivityMultiplier: e.target.value,
+								})
+							}
 						>
 							<option value={1.2}>Sedentary</option>
 							<option value={1.375}>Lightly Active</option>
@@ -425,7 +498,12 @@ function TdeeCalculator(props) {
 							id="exercise-activity-multiplier"
 							className="mx-auto mb-1"
 							value={formData.exerciseActivityMultiplier}
-							onChange={(e) => setFormData({ ...formData, exerciseActivityMultiplier: e.target.value })}
+							onChange={(e) =>
+								setFormData({
+									...formData,
+									exerciseActivityMultiplier: e.target.value,
+								})
+							}
 						>
 							<option value={1.2}>Rarely</option>
 							<option value={1.375}>Lightly Active</option>
@@ -437,16 +515,18 @@ function TdeeCalculator(props) {
 				</div>
 
 				<div className="btn-container d-flex justify-between mt-2">
-					<button className={"mb-1 btn-primary"} onClick={handleSubmit}>
+					<button className={"btn mb-1 btn-primary"} onClick={handleSubmit}>
 						Calculate
 					</button>
-					<button className={"mb-1 btn-secondary"} onClick={clearForm}>
+					<button className={"btn mb-1 btn-secondary"} onClick={clearForm}>
 						Clear Form
 					</button>
 				</div>
 				<div
 					className={`calculation-container ${
-						showCalculation === false ? "d-none" : "d-flex mx-auto justify-between mt-3 mb-3"
+						showCalculation === false
+							? "d-none"
+							: "d-flex mx-auto justify-between mt-3 mb-3"
 					}`}
 				>
 					<h6 className="calculation-label">TDEE:</h6>

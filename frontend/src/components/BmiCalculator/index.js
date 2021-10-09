@@ -68,10 +68,18 @@ function BmiCalculator(props) {
 		let bmi;
 		if (formData.measurementType === "imperial") {
 			//Imperial Formula for BMI calculation
-			bmi = Math.round(100 * (703 * (formData.imperialWeight / Math.pow(formData.imperialHeight, 2)))) / 100;
+			bmi =
+				Math.round(
+					100 *
+						(703 *
+							(formData.imperialWeight / Math.pow(formData.imperialHeight, 2)))
+				) / 100;
 		} else {
 			//Metric Formula for BMI calculation
-			bmi = Math.round(100 * (formData.metricWeight / Math.pow(formData.metricHeight, 2))) / 100;
+			bmi =
+				Math.round(
+					100 * (formData.metricWeight / Math.pow(formData.metricHeight, 2))
+				) / 100;
 		}
 
 		setBmiCalculation(Math.round(bmi));
@@ -120,9 +128,13 @@ function BmiCalculator(props) {
 
 	return (
 		<div className="bmi-calculator">
-			<h3 className="bmi-calculator-title text-center mt-1 mb-4">{props.title}</h3>
+			<h3 className="bmi-calculator-title text-center mt-1 mb-4">
+				{props.title}
+			</h3>
 			<form className="bmi-calculator-form d-flex flex-column align-center">
-				<span className="label text-center d-block mt-1 mb-1">Choose a Measurement Type:</span>
+				<span className="label text-center d-block mt-1 mb-1">
+					Choose a Measurement Type:
+				</span>
 				<div className="input-type d-flex justify-center mb-1">
 					<div className="input-container radio-input-container d-flex align-center mb-1">
 						<label className="radio-input-label justify-center align-center">
@@ -171,7 +183,11 @@ function BmiCalculator(props) {
 							/>
 							Weight (lbs)
 						</label>
-						<span className={`error ${validWeightInput === true ? "d-none" : "d-flex"}`}>
+						<span
+							className={`error ${
+								validWeightInput === true ? "d-none" : "d-flex"
+							}`}
+						>
 							Please enter at least 1 number
 						</span>
 					</div>
@@ -187,7 +203,11 @@ function BmiCalculator(props) {
 							/>
 							Height (inches)
 						</label>
-						<span className={`error ${validHeightInput === true ? "d-none" : "d-flex"}`}>
+						<span
+							className={`error ${
+								validHeightInput === true ? "d-none" : "d-flex"
+							}`}
+						>
 							Please enter at least 1 number
 						</span>
 					</div>
@@ -223,16 +243,18 @@ function BmiCalculator(props) {
 					</div>
 				</div>
 				<div className="btn-container d-flex justify-between mt-2">
-					<button className={"mb-1 btn-primary"} onClick={handleSubmit}>
+					<button className={"btn mb-1 btn-primary"} onClick={handleSubmit}>
 						Calculate
 					</button>
-					<button className={"mb-1 btn-secondary"} onClick={clearForm}>
+					<button className={"btn mb-1 btn-secondary"} onClick={clearForm}>
 						Clear Form
 					</button>
 				</div>
 				<div
 					className={`calculation-container ${
-						showCalculation === false ? "d-none" : "d-flex mx-auto justify-between mt-3 mb-3"
+						showCalculation === false
+							? "d-none"
+							: "d-flex mx-auto justify-between mt-3 mb-3"
 					}`}
 				>
 					<h6 className="calculation-label">BMI:</h6>

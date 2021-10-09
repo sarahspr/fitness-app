@@ -1,20 +1,32 @@
-button {
-	border: none;
-	border-radius: 5px;
-	background: none;
-	cursor: pointer;
-	margin: 0;
-	padding: 10px 15px;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	&.btn-primary {
-		background: $blue;
-		color: $white;
-	}
-	&.btn-secondary {
-		background: $white;
-		color: $blue;
+button,
+a {
+	&.btn {
 		border: 1px solid $blue;
+		border-radius: 5px;
+		background: none;
+		cursor: pointer;
+		margin: 0;
+		padding: 12px 17px;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		transition: all 0.2s ease-in-out;
+		&.btn-primary {
+			border: 1px solid $blue;
+			background: $blue;
+			color: $white;
+			&:hover {
+				background: $white;
+				color: $blue;
+			}
+		}
+		&.btn-secondary {
+			background: $white;
+			color: $blue;
+			&:hover {
+				background: $blue;
+				color: $white;
+			}
+		}
 	}
 }
 

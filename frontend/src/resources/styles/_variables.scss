@@ -4,9 +4,12 @@ Colors
 
 $white: #fff;
 $black: #000;
+$med-grey: #ebebec;
 $light-grey: #f4f6f7;
 $red: #e74c3c;
 $blue: #3498db;
+$med-blue: #80bfe9;
+$lgt-blue: #cce5f6;
 $green: #1abc9c;
 
 /*********
@@ -237,8 +240,15 @@ Display
 /**********
 Flex Directions/Alignment
 **********/
+.flex-reverse {
+	flex-direction: row-reverse;
+}
 .flex-column {
 	flex-direction: column;
+}
+
+.justify-end {
+	justify-content: flex-end;
 }
 
 .justify-center {

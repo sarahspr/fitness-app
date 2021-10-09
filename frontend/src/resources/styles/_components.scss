@@ -1,6 +1,7 @@
 @import "../../components/layout/Navbar/styles.m.scss";
 @import "../../components/Welcome/styles.m.scss";
-@import "../../components/auth/Login/styles.m.scss";
+@import "../../components/Home/styles.m.scss";
+@import "../../components/Dashboard/styles.m.scss";
 
 // Calculators
 @import "../../components/BmiCalculator/styles.m.scss";
@@ -9,3 +10,4 @@
 
 // Auth Components
 @import "../../components/auth/Register/styles.m.scss";
+@import "../../components/auth/Login/styles.m.scss";
